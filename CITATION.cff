@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+
+title: Inflamity
+type: software
+
+abstract: >
+  A Minecraft plugin that updates the way fire works and makes it much more powerful.
+
+authors:
+  - name: Esoteric Enderman
+    alias: EE
+    website: https://enderman.dev
+    email: esotericenderman@gmail.com
+    orcid: https://orcid.org/0009-0007-4990-9556
+
+keywords:
+ - kotlin
+ - minecraft
+ - paper
+ - plugin
+ - fire
+ - difficult
+
+license: AGPL-3.0-only
+
+url: https://github.com/esotericenderman/inflamity?tab=readme-ov-file
+repository-code: https://github.com/esotericenderman/inflamity
+repository-artifact: https://github.com/esotericenderman/inflamity/releases
+
+identifiers:
+  - type: url
+    value: https://github.com/esotericenderman/inflamity
+    description: The source code of this project.
+
+message: If you need to cite this project, please do it as specified in this file.
+
+version: 
+commit: 
+date-released: 

@@ -1,3 +1,3 @@
-rootProject.name = "minecraft-plugin-template"
+rootProject.name = "inflamity"
 
 include("project")

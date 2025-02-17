@@ -42,7 +42,6 @@ paperPluginYaml {
     apiVersion = property("minecraft.version") as String
 
     main = "${project.group}.${property("package")}.${name.get()}Plugin"
-    bootstrapper = "${project.group}.${property("package")}.bootstrap.${name.get()}PluginBootstrap"
 }
 
 repositories {
