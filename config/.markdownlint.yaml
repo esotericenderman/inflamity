@@ -1,0 +1,13 @@
+# Line length
+# Please just use text wrapping instead of rigorously trying to separate a paragraph onto multiple lines.
+MD013: false
+
+# No repetitive heading content
+# Disable due to how ./CHANGELOG.md works.
+MD024:
+  siblings_only: true
+
+# No inline HTML
+# GitHub, GitLab, and really most Markdown renderers support *most* inline HTML so there's no reason not to use this.
+# This is used in some parts of the project for aesthetic purposes.
+MD033: false

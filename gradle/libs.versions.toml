@@ -1,0 +1,53 @@
+[versions]
+# Libraries
+# Utility
+utility = "1.1.1"
+
+# Test
+junit-platform = "junit-platform-launcher"
+junit-jupiter-engine = "5.11.1"
+
+kotlin-mock = "1.13.16"
+
+bukkit-mock = "4.33.0"
+
+# Plugins
+plugin-kotlin-jvm = "2.1.0"
+
+plugin-paperweight = "2.0.0-beta.14"
+
+plugin-paper-convention = "1.2.0"
+plugin-paper-run = "2.3.1"
+
+plugin-release-axion = "1.14.4"
+
+plugin-shadow = "9.0.0-beta8"
+
+plugin-dokka = "2.0.0"
+
+[libraries]
+# Utility
+utility = { module = "com.github.esotericfoundation:utility.kt", version.ref = "utility" }
+
+# Test
+junit-platform = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
+junit-jetbrains = { module = "org.jetbrains.kotlin:kotlin-test-junit5" }
+
+kotlin-mock = { module = "io.mockk:mockk", version.ref = "kotlin-mock"}
+
+bukkit-mock = { module = "org.mockbukkit.mockbukkit:mockbukkit-v1.21", version.ref = "bukkit-mock" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "plugin-kotlin-jvm" }
+
+paperweight = { id = "io.papermc.paperweight.userdev", version.ref = "plugin-paperweight" }
+
+paper-convention = { id = "xyz.jpenilla.resource-factory-paper-convention", version.ref = "plugin-paper-convention" }
+paper-run = { id = "xyz.jpenilla.run-paper", version.ref = "plugin-paper-run" }
+
+release-axion = { id = "pl.allegro.tech.build.axion-release", version.ref = "plugin-release-axion" }
+
+shadow = { id = "com.gradleup.shadow", version.ref = "plugin-shadow" }
+
+dokka = { id = "org.jetbrains.dokka", version.ref = "plugin-dokka" }

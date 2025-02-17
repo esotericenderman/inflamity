@@ -1,0 +1,19 @@
+name: markdown
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+      - name: Lint Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v19.1.0
+        with:
+          config: ./config/.markdownlint.yaml
