@@ -12,6 +12,9 @@
 - Add fire aspect swords to the list of fire-setting items.
 - Add fire charges to the list of fire-setting items.
 
+- Allow mobs to spread fire to each other by physical contact.
+- Allow mobs to spread fire to each other by hitting each other.
+
 ### Changes
 
 ### Removals
