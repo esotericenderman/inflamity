@@ -24,6 +24,7 @@
 
 - Make sure entities acknowledge when a player sets them on fire.
 - Make lava a LOT stronger.
+- Make creepers that are on fire explode.
 
 ### Removals
 
