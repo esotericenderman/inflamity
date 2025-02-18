@@ -26,6 +26,7 @@
 - Make lava a LOT stronger.
 - Make creepers that are on fire explode.
 - If a horse is set on fire, then so should the rider.
+- Prevent iron golems and other non-flammable mobs from catching fire, as it would be impossible for them to burn.
 
 ### Removals
 
