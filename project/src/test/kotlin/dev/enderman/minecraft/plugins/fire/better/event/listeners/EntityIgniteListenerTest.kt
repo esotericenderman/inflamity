@@ -40,7 +40,6 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `entity should ignite when right clicked with a flint and steel in the offhand`() {
-        player.inventory.setItemInMainHand(ItemStack(Material.AIR))
         player.inventory.setItemInOffHand(ItemStack(Material.FLINT_AND_STEEL))
 
         PlayerInteractAtEntityEvent(player, entity, entity.location.toVector()).callEvent()
