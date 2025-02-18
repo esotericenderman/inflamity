@@ -1,5 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
+import org.apache.commons.lang3.BooleanUtils
 import org.bukkit.Material
 import org.bukkit.Sound
 import org.bukkit.event.EventHandler
@@ -18,13 +19,18 @@ class EntityIgniteListener : Listener {
 
         if (!atLeastOneEmpty) return
 
-        val oneHandHolding = BooleanUtils.xor(heldItem.type == Material.FLINT_AND_STEEL, otherItem.type == Material.FLINT_AND_STEEL)
+        val mainHandHolding = heldItem.type == Material.FLINT_AND_STEEL
+        val offHandHolding = otherItem.type == Material.FLINT_AND_STEEL
+
+        val oneHandHolding = BooleanUtils.xor(mainHandHolding, offHandHolding)
         if (!oneHandHolding) return
 
         val entity = event.rightClicked
 
         entity.world.playSound(entity.location, Sound.ITEM_FLINTANDSTEEL_USE, 1.0F, 1.0F)
-        player.swingMainHand()
+
+        if (mainHandHolding) player.swingMainHand() else player.swingOffHand()
+
         entity.fireTicks = 40
     }
 }
