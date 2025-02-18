@@ -23,6 +23,8 @@
 
 ### Changes
 
+- Make sure entities acknowledge when a player sets them on fire.
+
 ### Removals
 
 ## Considered
