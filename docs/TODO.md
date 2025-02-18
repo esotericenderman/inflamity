@@ -14,8 +14,6 @@
 
 ### Changes
 
-- You should not be able to use a flint and steel if both hands are occupied.
-
 ### Removals
 
 ## Considered
