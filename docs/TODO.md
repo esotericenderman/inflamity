@@ -19,6 +19,7 @@
 - If an entity hits another entity wearing thorns armour with a fire-setting item, both entities are set on fire.
 
 - If a player is on fire, "flammable items" in their inventory will burn up.
+- Make lava a LOT stronger.
 
 ### Changes
 
