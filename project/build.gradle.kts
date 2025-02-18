@@ -97,7 +97,7 @@ tasks {
 
     withType<RunServer> {
         downloadPlugins {
-            modrinth("fastasyncworldedit", "2.12.3")
+            modrinth(libs.plugins.minecraft.fawe.get().pluginId, libs.plugins.minecraft.fawe.get().version.requiredVersion)
         }
     }
 

@@ -25,6 +25,9 @@ plugin-shadow = "9.0.0-beta8"
 
 plugin-dokka = "2.0.0"
 
+# Minecraft plugins
+minecraft-plugin-fawe = "2.12.3"
+
 [libraries]
 # Utility
 utility = { module = "com.github.esotericfoundation:utility.kt", version.ref = "utility" }
@@ -51,3 +54,6 @@ release-axion = { id = "pl.allegro.tech.build.axion-release", version.ref = "plu
 shadow = { id = "com.gradleup.shadow", version.ref = "plugin-shadow" }
 
 dokka = { id = "org.jetbrains.dokka", version.ref = "plugin-dokka" }
+
+# Minecraft plugins
+minecraft-fawe = { id = "fastasyncworldedit", version.ref = "minecraft-plugin-fawe" }
