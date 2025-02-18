@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent
 class EntityIgniteListener : Listener {
 
     @EventHandler
-    private fun onEntityIgnite(event: PlayerInteractAtEntityEvent) {
+    fun onEntityIgnite(event: PlayerInteractAtEntityEvent) {
         val player = event.player
         val heldItem = player.inventory.itemInMainHand
 

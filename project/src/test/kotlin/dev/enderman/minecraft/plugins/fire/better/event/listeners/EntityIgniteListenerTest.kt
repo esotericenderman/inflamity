@@ -1,6 +1,8 @@
 package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
+import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
 import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
+import dev.enderman.minecraft.plugins.fire.better.events.listeners.EntityIgniteListener
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Entity
@@ -15,27 +17,21 @@ import org.mockbukkit.mockbukkit.entity.PlayerMock
 import org.mockbukkit.mockbukkit.world.WorldMock
 import kotlin.test.*
 
-class EntityIgniteListenerTest {
-    private lateinit var server: ServerMock
-    private lateinit var plugin: InflamityPlugin
+class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
     private lateinit var world: WorldMock
     private lateinit var entity: Entity
     private lateinit var player: PlayerMock
 
-    @BeforeTest fun setUp() {
-        server = MockBukkit.mock()
-        plugin = MockBukkit.loadWith(InflamityPlugin::class.java, "paper-plugin.yml")
-        MockBukkit.ensureMocking()
-
+    @BeforeTest fun initialiseEnvironment() {
         world = WorldMock()
 
         val location = Location(world, 0.0, 0.0, 0.0)
-
         entity = world.createEntity(location, Sheep::class.java)
+
         player = server.addPlayer()
     }
 
-    @Test fun onEntityIgniteTest() {
+    @Test fun `entity should ignite when right clicked with a flint and steel`() {
         player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
 
         PlayerInteractAtEntityEvent(player, entity, entity.location.toVector()).callEvent()
@@ -43,7 +39,12 @@ class EntityIgniteListenerTest {
         assertTrue(entity.fireTicks != 0, "Entity should be on fire.")
     }
 
-    @AfterTest fun tearDown() {
-        MockBukkit.unmock()
+    @Test fun `event listener should work`() {
+        val event = PlayerInteractAtEntityEvent(player, entity, entity.location.toVector())
+        val listener = EntityIgniteListener()
+
+        listener.onEntityIgnite(event)
+
+        assertTrue(entity.fireTicks != 0, "Entity should be on fire.")
     }
 }
