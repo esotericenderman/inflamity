@@ -28,6 +28,7 @@
 - If a horse is set on fire, then so should the rider.
 - Prevent iron golems and other non-flammable mobs from catching fire, as it would be impossible for them to burn.
 - Stop fire from even existing on non-flammable blocks.
+- Prevent fire spread through hitting if the item that you hit with was non-flammable (such as a diamond sword).
 
 ### Removals
 
