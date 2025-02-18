@@ -11,7 +11,7 @@ class EntityFireSpreadListener : Listener {
     @EventHandler
     fun onEntityBurn(event: EntityDamageEvent) {
         val source = event.damageSource
-        val isFromFire = source.damageType == DamageType.ON_FIRE || source.damageType == DamageType.ON_FIRE || source.damageType == DamageType.CAMPFIRE
+        val isFromFire = source.damageType == DamageType.ON_FIRE || source.damageType == DamageType.IN_FIRE || source.damageType == DamageType.CAMPFIRE
 
         if (!isFromFire) return
 
