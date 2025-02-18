@@ -10,7 +10,8 @@ import org.bukkit.event.entity.EntityDamageEvent
 class EntityFireSpreadListener : Listener {
     @EventHandler
     fun onEntityBurn(event: EntityDamageEvent) {
-        val isFromFire = event.damageSource.damageType == DamageType.ON_FIRE
+        val source = event.damageSource
+        val isFromFire = source.damageType == DamageType.ON_FIRE || source.damageType == DamageType.ON_FIRE || source.damageType == DamageType.CAMPFIRE
 
         if (!isFromFire) return
 
