@@ -47,6 +47,15 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks > 0, "Entity should be on fire.")
     }
 
+    @Test fun `entity should not ignite when offhand is occupied`() {
+        player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
+        player.inventory.setItemInOffHand(ItemStack(Material.DIAMOND))
+
+        PlayerInteractAtEntityEvent(player, entity, entity.location.toVector()).callEvent()
+
+        assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
+    }
+
     @Test fun `event listener should work`() {
         val event = PlayerInteractAtEntityEvent(player, entity, entity.location.toVector())
         val listener = EntityIgniteListener()
