@@ -12,8 +12,13 @@ class EntityIgniteListener : Listener {
     fun onEntityIgnite(event: PlayerInteractAtEntityEvent) {
         val player = event.player
         val heldItem = player.inventory.itemInMainHand
+        val otherItem = player.inventory.itemInOffHand
 
-        if (heldItem.type != Material.FLINT_AND_STEEL) return
+        val atLeastOneEmpty = heldItem.isEmpty || otherItem.isEmpty
+
+        if (!atLeastOneEmpty) return
+
+        if (heldItem.type != Material.FLINT_AND_STEEL && otherItem.type != Material.FLINT_AND_STEEL) return
 
         val entity = event.rightClicked
 
