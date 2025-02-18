@@ -18,7 +18,8 @@ class EntityIgniteListener : Listener {
 
         if (!atLeastOneEmpty) return
 
-        if (heldItem.type != Material.FLINT_AND_STEEL && otherItem.type != Material.FLINT_AND_STEEL) return
+        val oneHandHolding = BooleanUtils.xor(heldItem.type == Material.FLINT_AND_STEEL, otherItem.type == Material.FLINT_AND_STEEL)
+        if (!oneHandHolding) return
 
         val entity = event.rightClicked
 
