@@ -18,6 +18,7 @@ class EntityIgniteListener : Listener {
         val entity = event.rightClicked
 
         entity.world.playSound(entity.location, Sound.ITEM_FLINTANDSTEEL_USE, 1.0F, 1.0F)
+        player.swingMainHand()
         entity.fireTicks = 40
     }
 }
