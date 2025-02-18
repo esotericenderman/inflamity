@@ -83,7 +83,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
 
-    @Test fun `event listener should work`() {
+    @Test fun `event listener works`() {
         val event = PlayerInteractAtEntityEvent(player, entity, Vector())
         val listener = EntityIgniteListener()
 
