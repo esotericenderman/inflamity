@@ -16,6 +16,8 @@
 - Allow mobs to spread fire to each other by physical contact.
 - Allow mobs to spread fire to each other by hitting each other.
 
+- If an entity hits another entity wearing thorns armour with a fire-setting item, both entities are set on fire.
+
 ### Changes
 
 ### Removals
