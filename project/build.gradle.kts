@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.com.intellij.util.text.VersionComparatorUtil
+import xyz.jpenilla.runpaper.task.RunServer
 import xyz.jpenilla.runtask.task.AbstractRun
 import java.util.Calendar
 
@@ -92,6 +93,12 @@ tasks {
 
     test {
         useJUnitPlatform()
+    }
+
+    withType<RunServer> {
+        downloadPlugins {
+            modrinth("fastasyncworldedit", "2.12.3")
+        }
     }
 
     withType<AbstractRun> {
