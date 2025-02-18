@@ -6,6 +6,7 @@ import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.attribute.Attribute
 import org.bukkit.attribute.AttributeModifier
+import org.bukkit.block.BlockFace
 import org.bukkit.damage.DamageSource
 import org.bukkit.damage.DamageType
 import org.bukkit.entity.Player
@@ -40,6 +41,19 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
         server.scheduler.runTaskLater(plugin, { -> assertTrue(player.fireTicks > 0)}, 10_000L)
     }
 
+    @Test fun `suffocating entity stops burning`() {
+        player.location.block.type = Material.FIRE
+
+        server.scheduler.runTaskLater(plugin, { ->
+            assertTrue(player.fireTicks > 0)
+
+            player.location.block.type = Material.SAND
+            player.location.block.getRelative(BlockFace.UP).type = Material.SAND
+
+            server.scheduler.runTaskLater(plugin, { -> assertTrue(player.fireTicks <= 0)}, 20L)
+        }, 50L);
+    }
+
     @Test fun `event listener works`() {
         val event = EntityDamageEvent(player, EntityDamageEvent.DamageCause.FIRE, DamageSource.builder(DamageType.ON_FIRE).build(), 1.0)
         val listener = EntityBurnListener()
@@ -51,6 +65,17 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
 
     @Test fun `event listener works for non-fire damage`() {
         val event = EntityDamageEvent(player, EntityDamageEvent.DamageCause.CUSTOM, DamageSource.builder(DamageType.GENERIC).build(), 1.0)
+        val listener = EntityBurnListener()
+
+        listener.onEntityBurn(event)
+
+        assertTrue(player.fireTicks <= 0)
+    }
+
+    @Test fun `event listener works for suffocation`() {
+        player.fireTicks = 10_000
+
+        val event = EntityDamageEvent(player, EntityDamageEvent.DamageCause.SUFFOCATION, DamageSource.builder(DamageType.IN_WALL).build(), 1.0)
         val listener = EntityBurnListener()
 
         listener.onEntityBurn(event)

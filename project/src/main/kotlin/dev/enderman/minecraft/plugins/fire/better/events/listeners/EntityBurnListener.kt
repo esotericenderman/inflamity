@@ -9,10 +9,18 @@ class EntityBurnListener : Listener {
     @EventHandler fun onEntityBurn(event: EntityDamageEvent) {
         val source = event.damageSource
 
+        val entity = event.entity
+
+        val isSuffocating = source.damageType == DamageType.IN_WALL
+        if (isSuffocating) {
+            entity.fireTicks = 0
+            return
+        }
+
         val isFromFire = source.damageType == DamageType.ON_FIRE || source.damageType == DamageType.IN_FIRE || source.damageType == DamageType.CAMPFIRE
 
         if (!isFromFire) return
 
-        event.entity.fireTicks = 10_000
+        entity.fireTicks = 10_000
     }
 }
