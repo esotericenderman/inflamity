@@ -1,0 +1,45 @@
+package dev.enderman.minecraft.plugins.fire.better.event.listeners
+
+import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
+import dev.enderman.minecraft.plugins.fire.better.events.listeners.FireExtinguishListener
+import org.bukkit.Location
+import org.bukkit.Material
+import org.bukkit.entity.Player
+import org.bukkit.event.block.BlockBreakEvent
+import org.junit.jupiter.api.BeforeEach
+import org.mockbukkit.mockbukkit.world.Coordinate
+import org.mockbukkit.mockbukkit.world.WorldMock
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
+
+class FireExtinguishListenerTest : AbstractInflamityPluginTest() {
+    private lateinit var world: WorldMock
+    private lateinit var player: Player
+
+    @BeforeEach fun setUpEnvironment() {
+        world = WorldMock()
+
+        player = server.addPlayer()
+        player.teleport(world.spawnLocation)
+    }
+
+    @Test fun `players cannot put out fire with their hand`() {
+        val fire = world.getBlockAt(Location(world, 0.0, 0.0, 0.0))
+        fire.setType(Material.FIRE)
+
+        player.breakBlock(fire)
+
+        assertTrue(player.fireTicks > 0, "Player should be on fire after attempting to put out fire with bare hands.")
+        assertEquals(fire.type, Material.FIRE, "Fire should remain after attempting to put out fire with bare hands.")
+    }
+
+    @Test fun `event listener works`() {
+        val fire = world.getBlockAt(Coordinate(0, 0, 0))
+        fire.setType(Material.FIRE)
+
+        val listener = FireExtinguishListener()
+
+        listener.onFireExtinguish(BlockBreakEvent(fire, player))
+    }
+}
