@@ -13,6 +13,6 @@ class FireExtinguishListener : Listener {
         if (block.type != Material.FIRE) return
 
         event.isCancelled = true
-        event.player.fireTicks = 20
+        event.player.fireTicks = 10_000
     }
 }

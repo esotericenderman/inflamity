@@ -31,6 +31,6 @@ class EntityIgniteListener : Listener {
 
         if (mainHandHolding) player.swingMainHand() else player.swingOffHand()
 
-        entity.fireTicks = 40
+        entity.fireTicks = 10_000
     }
 }
