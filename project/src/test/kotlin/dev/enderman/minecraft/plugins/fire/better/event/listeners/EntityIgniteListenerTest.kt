@@ -32,7 +32,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         player = server.addPlayer()
     }
 
-    @Test fun `entity should ignite when right clicked with a flint and steel`() {
+    @Test fun `entity ignites when right clicked with a flint and steel`() {
         player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
 
         PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
@@ -40,7 +40,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks > 0, "Entity should be on fire.")
     }
 
-    @Test fun `entity should ignite when right clicked with a flint and steel in the offhand`() {
+    @Test fun `entity ignites when right clicked with a flint and steel in the offhand`() {
         player.inventory.setItemInOffHand(ItemStack(Material.FLINT_AND_STEEL))
 
         PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
@@ -48,7 +48,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks > 0, "Entity should be on fire.")
     }
 
-    @Test fun `entity should not ignite when offhand is occupied`() {
+    @Test fun `entity does not ignite when offhand is occupied`() {
         player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
         player.inventory.setItemInOffHand(ItemStack(Material.DIAMOND))
 
@@ -57,7 +57,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
 
-    @Test fun `entity should not ignite when main hand is occupied`() {
+    @Test fun `entity does not ignite when main hand is occupied`() {
         player.inventory.setItemInMainHand(ItemStack(Material.DIAMOND))
         player.inventory.setItemInOffHand(ItemStack(Material.FLINT_AND_STEEL))
 
@@ -66,7 +66,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
 
-    @Test fun `entity should not ignite when holding two flint and steels`() {
+    @Test fun `entity does not ignite when holding two flint and steels`() {
         player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
         player.inventory.setItemInOffHand(ItemStack(Material.FLINT_AND_STEEL))
 
@@ -75,7 +75,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
 
-    @Test fun `entity should not ignite when not holding a flint and steel`() {
+    @Test fun `entity does not ignite when not holding a flint and steel`() {
         player.inventory.setItemInMainHand(ItemStack(Material.DIAMOND))
 
         PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()

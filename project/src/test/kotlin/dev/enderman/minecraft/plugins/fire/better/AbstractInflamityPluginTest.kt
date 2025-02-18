@@ -16,15 +16,15 @@ abstract class AbstractInflamityPluginTest {
         plugin = MockBukkit.loadWith(InflamityPlugin::class.java, "paper-plugin.yml")
     }
 
-    @Test fun `server should be mocked correctly`() {
+    @Test fun `server be mocked correctly`() {
         MockBukkit.ensureMocking()
     }
 
-    @Test fun `server should start without errors`() {
+    @Test fun `server starts without errors`() {
         assertNotNull(server)
     }
 
-    @Test fun `plugin should enable without errors`() {
+    @Test fun `plugin enables without errors`() {
         assertNotNull(plugin)
     }
 
