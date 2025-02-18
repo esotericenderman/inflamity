@@ -10,6 +10,7 @@ import org.bukkit.entity.EntityType
 import org.bukkit.entity.Sheep
 import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.inventory.ItemStack
+import org.bukkit.util.Vector
 import org.mockbukkit.mockbukkit.MockBukkit
 import org.mockbukkit.mockbukkit.ServerMock
 import org.mockbukkit.mockbukkit.entity.EntityMock
@@ -34,7 +35,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
     @Test fun `entity should ignite when right clicked with a flint and steel`() {
         player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
 
-        PlayerInteractAtEntityEvent(player, entity, entity.location.toVector()).callEvent()
+        PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
 
         assertTrue(entity.fireTicks > 0, "Entity should be on fire.")
     }
@@ -42,7 +43,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
     @Test fun `entity should ignite when right clicked with a flint and steel in the offhand`() {
         player.inventory.setItemInOffHand(ItemStack(Material.FLINT_AND_STEEL))
 
-        PlayerInteractAtEntityEvent(player, entity, entity.location.toVector()).callEvent()
+        PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
 
         assertTrue(entity.fireTicks > 0, "Entity should be on fire.")
     }
@@ -51,7 +52,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
         player.inventory.setItemInOffHand(ItemStack(Material.DIAMOND))
 
-        PlayerInteractAtEntityEvent(player, entity, entity.location.toVector()).callEvent()
+        PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
 
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
@@ -60,7 +61,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         player.inventory.setItemInMainHand(ItemStack(Material.DIAMOND))
         player.inventory.setItemInOffHand(ItemStack(Material.FLINT_AND_STEEL))
 
-        PlayerInteractAtEntityEvent(player, entity, entity.location.toVector()).callEvent()
+        PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
 
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
@@ -69,7 +70,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
         player.inventory.setItemInOffHand(ItemStack(Material.FLINT_AND_STEEL))
 
-        PlayerInteractAtEntityEvent(player, entity, entity.location.toVector()).callEvent()
+        PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
 
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
@@ -77,13 +78,13 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
     @Test fun `entity should not ignite when not holding a flint and steel`() {
         player.inventory.setItemInMainHand(ItemStack(Material.DIAMOND))
 
-        PlayerInteractAtEntityEvent(player, entity, entity.location.toVector()).callEvent()
+        PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
 
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
 
     @Test fun `event listener should work`() {
-        val event = PlayerInteractAtEntityEvent(player, entity, entity.location.toVector())
+        val event = PlayerInteractAtEntityEvent(player, entity, Vector())
         val listener = EntityIgniteListener()
 
         listener.onEntityIgnite(event)
