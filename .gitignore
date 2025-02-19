@@ -165,6 +165,8 @@ buildNumber.properties
 
 ### Exported Gimp files
 *.png
+*.jpg
+*.jpeg
 
 ## Libraries
 ### Node.js packages
