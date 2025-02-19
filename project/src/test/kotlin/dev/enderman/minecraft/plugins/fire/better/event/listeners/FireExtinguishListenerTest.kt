@@ -19,7 +19,7 @@ class FireExtinguishListenerTest : AbstractInflamityPluginTest() {
         world = WorldMock()
 
         player = server.addPlayer()
-        player.teleport(world.spawnLocation)
+        player.teleport(world.spawnLocation.add(0.0, 0.0, 3.0))
     }
 
     @Test fun `players cannot put out fire with their hand`() {
