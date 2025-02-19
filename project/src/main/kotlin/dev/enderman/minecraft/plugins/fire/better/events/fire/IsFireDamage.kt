@@ -1,4 +1,4 @@
-package dev.enderman.minecraft.plugins.fire.better.fire
+package dev.enderman.minecraft.plugins.fire.better.events.fire
 
 import org.bukkit.damage.DamageType
 import org.bukkit.event.entity.EntityDamageEvent

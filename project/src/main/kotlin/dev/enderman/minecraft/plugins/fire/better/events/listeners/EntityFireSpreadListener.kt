@@ -1,6 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
-import dev.enderman.minecraft.plugins.fire.better.fire.isFireDamage
+import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import org.bukkit.Material
 import org.bukkit.block.BlockFace
 import org.bukkit.event.EventHandler
