@@ -31,6 +31,8 @@ class FireExtinguishListenerTest : AbstractInflamityPluginTest() {
 
         player.breakBlock(fire)
 
+        server.scheduler.performOneTick()
+
         assertTrue(player.fireTicks > 0, "Player should be on fire after attempting to put out fire with bare hands.")
         assertEquals(fire.type, Material.FIRE, "Fire should remain after attempting to put out fire with bare hands.")
     }
