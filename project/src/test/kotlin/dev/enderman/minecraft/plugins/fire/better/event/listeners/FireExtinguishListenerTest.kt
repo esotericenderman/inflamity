@@ -38,12 +38,20 @@ class FireExtinguishListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `non-fire blocks act normally`() {
-        val notFire = world.getBlockAt(Location(world, 0.0, 0.0, 0.0))
-        notFire.setType(Material.OAK_LOG)
+        for (material in Material.entries) {
+            if (material == Material.FIRE) continue
 
-        player.breakBlock(notFire)
+            val notFire = world.spawnLocation.block
 
-        assertTrue(player.fireTicks <= 0, "Player should be able to break non-fire blocks normally.")
-        assertNotEquals(notFire.type, Material.FIRE, "Non-fire block does not turn to fire after player breaks it.")
+            try {
+                notFire.type = material
+                player.breakBlock(notFire)
+            } catch (exception: Exception) {
+                continue
+            }
+
+            assertTrue(player.fireTicks <= 0, "Player should be able to break non-fire blocks without combusting.")
+            assertNotEquals(Material.FIRE, notFire.type, "Non-fire block does not turn to fire after player breaks it.")
+        }
     }
 }
