@@ -1,11 +1,11 @@
 # Contact
 
 - Discord: [invite][discord]
-- Email: [foundationesoteric@gmail.com][email]
+- Email: [esotericenderman@gmail.com][email]
 
 <!-- Link aliases -->
 
 <!-- Contact -->
 
 [discord]: https://esoteric.foundation/discord
-[email]: mailto:foundationesoteric@gmail.com
+[email]: mailto:esotericenderman@gmail.com
