@@ -40,6 +40,8 @@ class FireExtinguishListenerTest : AbstractInflamityPluginTest() {
         for (material in Material.entries) {
             if (material == Material.FIRE) continue
 
+            setUpEnvironment()
+
             val notFire = world.spawnLocation.block
 
             try {

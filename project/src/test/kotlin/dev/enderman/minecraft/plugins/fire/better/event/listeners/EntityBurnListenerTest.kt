@@ -109,6 +109,8 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
         for (damageCause in EntityDamageEvent.DamageCause.entries) {
             if (damageCause in fireDamageTypes) continue
 
+            setUpEnvironment()
+
             val damage = 1.0
 
             player.damage(damage)
