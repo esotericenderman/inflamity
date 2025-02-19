@@ -5,15 +5,14 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 
+val contactAttacks = listOfNotNull(DamageType.PLAYER_ATTACK, DamageType.MOB_ATTACK, DamageType.MOB_ATTACK_NO_AGGRO)
+
 class EntityContactListener : Listener {
     @EventHandler fun onHit(event: EntityDamageByEntityEvent) {
         val entity = event.entity
         val damager = event.damager
 
-        val isDirect =
-                   event.damageSource.damageType == DamageType.MOB_ATTACK
-                || event.damageSource.damageType == DamageType.MOB_ATTACK_NO_AGGRO
-                || event.damageSource.damageType == DamageType.PLAYER_ATTACK
+        val isDirect = event.damageSource.damageType in contactAttacks
 
         if (!isDirect) return
 
