@@ -41,10 +41,11 @@ class FireExtinguishListenerTest : AbstractInflamityPluginTest() {
 
             try {
                 notFire.type = material
-                player.breakBlock(notFire)
             } catch (exception: Exception) {
                 continue
             }
+
+            player.breakBlock(notFire)
 
             assertTrue(player.fireTicks <= 0, "Player should be able to break non-fire blocks without combusting.")
             assertNotEquals(Material.FIRE, notFire.type, "Non-fire block does not turn to fire after player breaks it.")
