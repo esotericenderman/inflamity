@@ -1,19 +1,12 @@
 package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
-import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
-import dev.enderman.minecraft.plugins.fire.better.events.listeners.EntityIgniteListener
-import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Entity
-import org.bukkit.entity.EntityType
 import org.bukkit.entity.Sheep
 import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.util.Vector
-import org.mockbukkit.mockbukkit.MockBukkit
-import org.mockbukkit.mockbukkit.ServerMock
-import org.mockbukkit.mockbukkit.entity.EntityMock
 import org.mockbukkit.mockbukkit.entity.PlayerMock
 import org.mockbukkit.mockbukkit.world.WorldMock
 import kotlin.test.*
@@ -25,14 +18,11 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
 
     @BeforeTest fun initialiseEnvironment() {
         world = WorldMock()
-
-        val location = Location(world, 0.0, 0.0, 0.0)
-        entity = world.createEntity(location, Sheep::class.java)
-
+        entity = world.createEntity(world.spawnLocation, Sheep::class.java)
         player = server.addPlayer()
     }
 
-    @Test fun `entity ignites when right clicked with a flint and steel`() {
+    @Test fun `entity ignites when right-clicked with a flint and steel (event)`() {
         player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
 
         PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
@@ -40,7 +30,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks > 0, "Entity should be on fire.")
     }
 
-    @Test fun `entity ignites when right clicked with a flint and steel in the offhand`() {
+    @Test fun `entity ignites when right-clicked with a flint and steel in the offhand (event)`() {
         player.inventory.setItemInOffHand(ItemStack(Material.FLINT_AND_STEEL))
 
         PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
@@ -48,7 +38,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks > 0, "Entity should be on fire.")
     }
 
-    @Test fun `entity does not ignite when offhand is occupied`() {
+    @Test fun `entity does not ignite when offhand is occupied (event)`() {
         player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
         player.inventory.setItemInOffHand(ItemStack(Material.DIAMOND))
 
@@ -57,7 +47,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
 
-    @Test fun `entity does not ignite when main hand is occupied`() {
+    @Test fun `entity does not ignite when main hand is occupied (event)`() {
         player.inventory.setItemInMainHand(ItemStack(Material.DIAMOND))
         player.inventory.setItemInOffHand(ItemStack(Material.FLINT_AND_STEEL))
 
@@ -66,7 +56,7 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
 
-    @Test fun `entity does not ignite when holding two flint and steels`() {
+    @Test fun `entity does not ignite when holding two flint and steels (event)`() {
         player.inventory.setItemInMainHand(ItemStack(Material.FLINT_AND_STEEL))
         player.inventory.setItemInOffHand(ItemStack(Material.FLINT_AND_STEEL))
 
@@ -75,20 +65,11 @@ class EntityIgniteListenerTest : AbstractInflamityPluginTest() {
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
     }
 
-    @Test fun `entity does not ignite when not holding a flint and steel`() {
+    @Test fun `entity does not ignite when not holding a flint and steel (event)`() {
         player.inventory.setItemInMainHand(ItemStack(Material.DIAMOND))
 
         PlayerInteractAtEntityEvent(player, entity, Vector()).callEvent()
 
         assertTrue(entity.fireTicks <= 0, "Entity should not be on fire.")
-    }
-
-    @Test fun `event listener works`() {
-        val event = PlayerInteractAtEntityEvent(player, entity, Vector())
-        val listener = EntityIgniteListener()
-
-        listener.onEntityIgnite(event)
-
-        assertTrue(entity.fireTicks != 0, "Entity should be on fire.")
     }
 }
