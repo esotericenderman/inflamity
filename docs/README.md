@@ -37,7 +37,7 @@ A Minecraft plugin that updates the way fire works and makes it much more powerf
 
 ## Topics
 
-kotlin plugin minecraft minecraft-plugin minecraft-plugins minecraft-plugin-development minecraft-paper minecraft-paper-plugin minecraft-paper-plugins minecraft-papermc-plugin minecraft-papermc-plugins minecraft-papermc
+kotlin plugin minecraft paper fire minecraft-plugin mc survival difficulty mc-dev minecraft-plugins mc-kotlin papermc minecraft-survival minecraft-plugin-development minecraft-fire minecraft-paper minecraft-paper-plugin minecraft-paper-plugins minecraft-papermc-plugin
 
 <!-- Link aliases -->
 
