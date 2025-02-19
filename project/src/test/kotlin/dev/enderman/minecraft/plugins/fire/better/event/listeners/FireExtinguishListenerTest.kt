@@ -27,10 +27,13 @@ class FireExtinguishListenerTest : AbstractInflamityPluginTest() {
 
         player.breakBlock(fire)
 
-        server.scheduler.performOneTick()
-
         assertTrue(player.fireTicks > 0, "Player should be on fire after attempting to put out fire with bare hands.")
         assertEquals(Material.FIRE, fire.type, "Fire should remain after attempting to put out fire with bare hands.")
+
+        server.scheduler.performOneTick()
+
+        assertTrue(player.fireTicks > 0, "Player should be on fire one tick after attempting to put out fire with bare hands.")
+        assertEquals(Material.FIRE, fire.type, "Fire should remain one tick after attempting to put out fire with bare hands.")
     }
 
     @Test fun `non-fire blocks act normally`() {
@@ -49,6 +52,11 @@ class FireExtinguishListenerTest : AbstractInflamityPluginTest() {
 
             assertTrue(player.fireTicks <= 0, "Player should be able to break non-fire blocks without combusting.")
             assertNotEquals(Material.FIRE, notFire.type, "Non-fire block does not turn to fire after player breaks it.")
+
+            server.scheduler.performOneTick()
+
+            assertTrue(player.fireTicks <= 0, "Player should be able to break non-fire blocks without combusting (after one tick).")
+            assertNotEquals(Material.FIRE, notFire.type, "Non-fire block does not turn to fire after player breaks it and remains so for the next tick.")
         }
     }
 }
