@@ -1,13 +1,10 @@
 package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
-import dev.enderman.minecraft.plugins.fire.better.events.listeners.FireExtinguishListener
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Player
-import org.bukkit.event.block.BlockBreakEvent
 import org.junit.jupiter.api.BeforeEach
-import org.mockbukkit.mockbukkit.world.Coordinate
 import org.mockbukkit.mockbukkit.world.WorldMock
 import kotlin.test.Test
 import kotlin.test.assertEquals
