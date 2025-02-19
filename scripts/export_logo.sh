@@ -15,3 +15,7 @@ gimp -n -i -b - <<EOF
   (gimp-quit 0)
   )
 EOF
+
+cd ../../../../ || exit
+
+mv ./docs/assets/images/logos/inflamity.png ./.idea/icon.png
