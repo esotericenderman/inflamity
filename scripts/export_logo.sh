@@ -10,6 +10,10 @@ gimp -n -i -b - <<EOF
     (set! layer (car (gimp-image-merge-visible-layers image CLIP-TO-IMAGE)))
     (set! filename (string-append (substring (car file's) 0 (- (string-length (car file's)) 4)) ".png"))
     (gimp-file-save RUN-NONINTERACTIVE image layer filename filename)
+
+    (set! filename (string-append (substring (car file's) 0 (- (string-length (car file's)) 4)) ".png"))
+    (gimp-file-save RUN-NONINTERACTIVE image layer filename filename)
+
     (gimp-image-delete image)
     (set! file's (cdr file's))
     )
