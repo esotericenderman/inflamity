@@ -1,7 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
-import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.junit.jupiter.api.BeforeEach
@@ -23,8 +22,8 @@ class FireExtinguishListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `players cannot put out fire with their hand`() {
-        val fire = world.getBlockAt(Location(world, 0.0, 0.0, 0.0))
-        fire.setType(Material.FIRE)
+        val fire = world.spawnLocation.block
+        fire.type = Material.FIRE
 
         player.breakBlock(fire)
 
