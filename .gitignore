@@ -163,6 +163,9 @@ buildNumber.properties
 .apt_generated
 .factorypath
 
+### Exported Gimp files
+*.png
+
 ## Libraries
 ### Node.js packages
 node_modules
