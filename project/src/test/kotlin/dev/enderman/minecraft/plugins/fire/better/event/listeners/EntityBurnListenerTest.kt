@@ -1,6 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
+import dev.enderman.minecraft.plugins.fire.better.events.fire.fireDamageTypes
 import org.bukkit.Material
 import org.bukkit.block.BlockFace
 import org.bukkit.damage.DamageSource
@@ -33,6 +34,31 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
         )
 
         player.fireTicks = 10_000
+
+        server.scheduler.performTicks(50_000L)
+
+        assertTrue(player.fireTicks > 0, "Player that starting burning a long time ago does not stop burning.")
+    }
+
+    @Test fun `entity that starts burning burns forever (event)`() {
+        player.addPotionEffect(
+            PotionEffect(
+                PotionEffectType.REGENERATION,
+                PotionEffect.INFINITE_DURATION,
+                5
+            )
+        )
+
+        val damage = 1.0
+        player.damage(damage)
+        val event = EntityDamageEvent(
+            player,
+            EntityDamageEvent.DamageCause.FIRE_TICK,
+            DamageSource.builder(DamageType.ON_FIRE).withDamageLocation(player.location).build(),
+            damage
+        )
+
+        event.callEvent()
 
         server.scheduler.performTicks(50_000L)
 
@@ -77,5 +103,25 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
         event.callEvent()
 
         assertTrue(player.fireTicks <= 0, "Player stops burning after being suffocated (no oxygen for the fire to burn).")
+    }
+
+    @Test fun `non-fire damage does not set entities on fire (event)`() {
+        for (damageCause in EntityDamageEvent.DamageCause.entries) {
+            if (damageCause in fireDamageTypes) continue
+
+            val damage = 1.0
+
+            player.damage(damage)
+            val event = EntityDamageEvent(
+                player,
+                EntityDamageEvent.DamageCause.SUICIDE,
+                DamageSource.builder(DamageType.GENERIC_KILL).withDamageLocation(player.location).withDirectEntity(player).withCausingEntity(player).build(),
+                damage
+            )
+
+            event.callEvent()
+
+            assertTrue(player.fireTicks <= 0, "Generic damage does not set entities on fire.")
+        }
     }
 }
