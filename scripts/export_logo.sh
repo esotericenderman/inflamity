@@ -19,4 +19,4 @@ EOF
 
 cd ../../../../ || exit
 
-mv ./docs/assets/images/logos/inflamity.png ./.idea/icon.png
+cp ./docs/assets/images/logos/inflamity.png ./.idea/icon.png
