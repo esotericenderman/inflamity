@@ -4,4 +4,6 @@ include("project")
 
 exec {
     commandLine("bash", "./scripts/export_logo.sh")
+
+    isIgnoreExitValue = true
 }
