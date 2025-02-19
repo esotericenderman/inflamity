@@ -37,7 +37,7 @@ class FireExtinguishListenerTest : AbstractInflamityPluginTest() {
         assertEquals(Material.FIRE, fire.type, "Fire should remain after attempting to put out fire with bare hands.")
     }
 
-    @Test fun `player does not ignite when block is not fire`() {
+    @Test fun `player does not ignite when broken block is not fire`() {
         val notFire = world.getBlockAt(Location(world, 0.0, 0.0, 0.0))
         notFire.setType(Material.OAK_LOG)
 
