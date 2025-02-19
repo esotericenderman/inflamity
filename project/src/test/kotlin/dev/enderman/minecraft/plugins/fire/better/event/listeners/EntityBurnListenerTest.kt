@@ -64,12 +64,14 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
         player.location.block.type = Material.SAND
         player.location.block.getRelative(BlockFace.UP).type = Material.SAND
 
-        player.damage(1.0)
+        val damage = 1.0
+
+        player.damage(damage)
         val event = EntityDamageEvent(
             player,
             EntityDamageEvent.DamageCause.SUFFOCATION,
             DamageSource.builder(DamageType.IN_WALL).withDamageLocation(player.location).build(),
-            1.0
+            damage
         )
 
         event.callEvent()
