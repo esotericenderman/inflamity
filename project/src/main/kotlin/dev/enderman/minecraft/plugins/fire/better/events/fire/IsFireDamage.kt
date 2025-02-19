@@ -10,8 +10,6 @@ val fireDamageTypes = listOf(
 //    DamageType.HOT_FLOOR
 )
 
-fun isFireDamage(event: EntityDamageEvent): Boolean {
-    val damageType = event.damageSource.damageType
-
-    return damageType in fireDamageTypes
+fun EntityDamageEvent.isFireDamage(): Boolean {
+    return damageSource.damageType in fireDamageTypes
 }

@@ -10,7 +10,7 @@ import org.bukkit.event.entity.EntityDamageEvent
 class EntityFireSpreadListener : Listener {
     @EventHandler
     fun onEntityBurn(event: EntityDamageEvent) {
-        if (!isFireDamage(event)) return
+        if (!event.isFireDamage()) return
 
         val block = event.entity.location.block
         val blockBeneath = block.getRelative(BlockFace.DOWN)

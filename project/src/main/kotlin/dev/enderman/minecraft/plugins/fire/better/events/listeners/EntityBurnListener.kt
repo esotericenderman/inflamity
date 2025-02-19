@@ -18,7 +18,7 @@ class EntityBurnListener : Listener {
             return
         }
 
-        if (!isFireDamage(event)) return
+        if (!event.isFireDamage()) return
 
         entity.fireTicks = 10_000
     }
