@@ -11,7 +11,7 @@ gimp -n -i -b - <<EOF
     (set! filename (string-append (substring (car file's) 0 (- (string-length (car file's)) 4)) ".png"))
     (gimp-file-save RUN-NONINTERACTIVE image layer filename filename)
 
-    (set! filename (string-append (substring (car file's) 0 (- (string-length (car file's)) 4)) ".png"))
+    (set! filename (string-append (substring (car file's) 0 (- (string-length (car file's)) 4)) ".jpg"))
     (gimp-file-save RUN-NONINTERACTIVE image layer filename filename)
 
     (gimp-image-delete image)
