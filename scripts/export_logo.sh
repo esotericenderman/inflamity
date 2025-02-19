@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd "$(dirname "$0")" || exit
 cd ../docs/assets/images/logos/ || exit
 
 gimp -n -i -b - <<EOF
