@@ -1,8 +1,8 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
+import dev.enderman.minecraft.plugins.fire.better.fire.isFireDamage
 import org.bukkit.Material
 import org.bukkit.block.BlockFace
-import org.bukkit.damage.DamageType
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageEvent
@@ -10,10 +10,7 @@ import org.bukkit.event.entity.EntityDamageEvent
 class EntityFireSpreadListener : Listener {
     @EventHandler
     fun onEntityBurn(event: EntityDamageEvent) {
-        val source = event.damageSource
-        val isFromFire = source.damageType == DamageType.ON_FIRE || source.damageType == DamageType.IN_FIRE || source.damageType == DamageType.CAMPFIRE
-
-        if (!isFromFire) return
+        if (!isFireDamage(event)) return
 
         val block = event.entity.location.block
         val blockBeneath = block.getRelative(BlockFace.DOWN)

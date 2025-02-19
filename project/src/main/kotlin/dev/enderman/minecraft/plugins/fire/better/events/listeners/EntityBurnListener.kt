@@ -1,5 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
+import dev.enderman.minecraft.plugins.fire.better.fire.isFireDamage
 import org.bukkit.damage.DamageType
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -17,9 +18,7 @@ class EntityBurnListener : Listener {
             return
         }
 
-        val isFromFire = source.damageType == DamageType.ON_FIRE || source.damageType == DamageType.IN_FIRE || source.damageType == DamageType.CAMPFIRE
-
-        if (!isFromFire) return
+        if (!isFireDamage(event)) return
 
         entity.fireTicks = 10_000
     }
