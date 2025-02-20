@@ -95,10 +95,18 @@ tasks {
         useJUnitPlatform()
     }
 
+    register("cleanServer") {
+        exec {
+            commandLine("git", "restore", "./project/run")
+        }
+    }
+
     withType<RunServer> {
         downloadPlugins {
             modrinth(libs.plugins.minecraft.fawe.get().pluginId, libs.plugins.minecraft.fawe.get().version.requiredVersion)
         }
+
+        finalizedBy("cleanServer")
     }
 
     withType<AbstractRun> {
