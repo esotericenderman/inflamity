@@ -8,7 +8,9 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageEvent
+import org.bukkit.inventory.meta.Damageable
 import org.bukkit.persistence.PersistentDataType
+import kotlin.random.Random
 
 class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
     @EventHandler(priority = EventPriority.LOW)
@@ -51,16 +53,27 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
                 return
             }
 
-            val damageFactor = (16.0 - total) / 16.0
-            val final = event.finalDamage
+            val factor = (16.0 - total) / 16.0
 
-            val toDeal = final * damageFactor
-            event.isCancelled = true
+            if (event.cause == EntityDamageEvent.DamageCause.FIRE || event.cause == EntityDamageEvent.DamageCause.CAMPFIRE) {
+                for (equipped in listOf(head, chest, legs, feet)) {
+                    if (equipped?.itemMeta !is Damageable) continue
 
-            container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
+                    if (Random.nextDouble() > factor) equipped.editMeta(Damageable::class.java) {
+                            meta -> if (meta.damage != 0) meta.damage--
+                    }
+                }
+            }
 
-            entity.damage(toDeal, event.damageSource)
-            return
+            if (total == 0) {
+                val final = event.finalDamage
+                val toDeal = final * factor
+
+                event.isCancelled = true
+
+                container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
+                entity.damage(toDeal, event.damageSource)
+            }
         }
 
         entity.fireTicks = 10_000
