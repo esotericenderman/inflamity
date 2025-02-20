@@ -63,7 +63,7 @@ kotlin plugin minecraft paper fire minecraft-plugin mc survival difficulty mc-de
 
 <!-- Template -->
 
-[template]: https://github.com/esotericenderman/inflamity
+[template]: https://github.com/esoterictemplates/minecraft-plugin-template
 
 <!-- Files -->
 
