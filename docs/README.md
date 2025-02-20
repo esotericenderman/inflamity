@@ -12,7 +12,7 @@ A little-noticed fact about Minecraft fire is that it is much weaker than its re
 
 Minecraft fire goes out naturally after some time, even if there wasn't much of a reason for that to happen.
 
-Standing on highly-flammable blocks such as  logs, coal blocks, or even TNT would surely spell doom for the whole building you're in, right? Nope - fire doesn't spread from an entity to a block, only the other way around.
+Standing on highly-flammable blocks such as logs, coal blocks, or even TNT while you're burning would surely spell doom for the whole building you're in, right? Nope - fire doesn't spread from an entity to a block, only the other way around.
 
 This plugin aims to fix these discrepancies and give fire the power it deserves. The result is that fire becomes more akin to a natural disaster that is not to be messed with - a force of nature that is difficult to survive, let alone contain.
 
