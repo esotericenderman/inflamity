@@ -1,36 +1,36 @@
 # Gallery
 
+## Burning Sheep
+
+![Burning sheep][burning-sheep]
+
 ## Burning Animals
 
 ![Burning animals][burning-animals]
-
-## Burning Woodland Mansion
-
-![Burning woodland mansion][burning-mansion]
-
-## Burning Pillager Outpost
-
-![Burning pillager outpost][burning-outpost]
-
-## Burning Village
-
-![Burning village][burning-village]
 
 ## Burning Horses
 
 ![Burning horses][burning-horses]
 
-## Burning Sheep
+## Burning Village
 
-![Burning sheep][burning-sheep]
+![Burning village][burning-village]
 
 ## Burning Villagers
 
 ![Burning villagers][burning-villagers]
 
+## Burning Pillager Outpost
+
+![Burning pillager outpost][burning-outpost]
+
 ## Burnt Pillager Outpost
 
 ![Burnt pillager outpost][burnt-outpost]
+
+## Burning Woodland Mansion
+
+![Burning woodland mansion][burning-mansion]
 
 <!-- Link aliases -->
 
