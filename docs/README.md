@@ -25,6 +25,7 @@ This plugin aims to fix these discrepancies and give fire the power it deserves.
 - [Citation][citation]
 - [Code of Conduct][conduct]
 - [Credit][credit]
+- [Gallery][gallery]
 
 ## Usage
 
@@ -75,6 +76,7 @@ kotlin plugin minecraft paper fire minecraft-plugin mc survival difficulty mc-de
 [conduct]: ./CODE_OF_CONDUCT.md
 [security]: ./SECURITY.md
 [credit]: ./CREDIT.md
+[gallery]: ./GALLERY.md
 
 <!-- Licenses -->
 
