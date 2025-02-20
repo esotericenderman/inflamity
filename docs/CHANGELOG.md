@@ -24,7 +24,10 @@
 - Hitting a mob that is on fire will spread the fire to you, and vice versa.
 - Right-clicking entities with a flint and steel now sets them on fire.
 
+#### Changes
+
+- Attempting to put out a fire with your hand will instead set you on fire.
+
 #### Removals
 
-- Fire can no longer be put out by punching it.
 - Entities on fire do not extinguish naturally.
