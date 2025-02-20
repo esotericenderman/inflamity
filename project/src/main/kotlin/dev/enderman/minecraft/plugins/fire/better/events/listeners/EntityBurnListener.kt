@@ -4,11 +4,13 @@ import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageEvent
 
 class EntityBurnListener : Listener {
-    @EventHandler fun onEntityBurn(event: EntityDamageEvent) {
+    @EventHandler(priority = EventPriority.LOW)
+    fun onEntityBurn(event: EntityDamageEvent) {
         val entity = event.entity
 
         val isSuffocating = event.cause == EntityDamageEvent.DamageCause.SUFFOCATION
