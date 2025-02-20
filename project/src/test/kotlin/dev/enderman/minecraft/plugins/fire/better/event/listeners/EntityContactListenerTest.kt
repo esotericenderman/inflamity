@@ -37,7 +37,7 @@ class EntityContactListenerTest : AbstractInflamityPluginTest() {
             setUpEnvironment()
 
             val cause = EntityDamageEvent.DamageCause.ENTITY_ATTACK
-            val source = DamageSource.builder(damageType).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
+            val source = DamageSource.builder(DamageType.GENERIC).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
 
             val event = EntityDamageByEntityEvent(player, creeper, cause, source, 1.0)
             event.callEvent()
@@ -74,10 +74,9 @@ class EntityContactListenerTest : AbstractInflamityPluginTest() {
             player.fireTicks = 0
             creeper.fireTicks = 10_000
 
-            val cause = EntityDamageEvent.DamageCause.ENTITY_ATTACK
-            val source = DamageSource.builder(damageType).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
+            val source = DamageSource.builder(DamageType.GENERIC).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
 
-            val event = EntityDamageByEntityEvent(player, creeper, cause, source, 1.0)
+            val event = EntityDamageByEntityEvent(player, creeper, damageType, source, 1.0)
             event.callEvent()
 
             assertTrue(player.fireTicks > 0, "Player should be on fire after attacking a lit creeper.")
