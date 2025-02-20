@@ -1,4 +1,4 @@
-# Inflamity
+# [Inflamity][modrinth]
 
 <sup>Generated from [Minecraft Plugin Template][template]</sup>
 
@@ -61,6 +61,8 @@ kotlin plugin minecraft paper fire minecraft-plugin mc survival difficulty mc-de
 <!-- This project -->
 
 [author-website]: https://enderman.dev
+
+[modrinth]: https://modrinth.com/plugin/inflamity
 
 <!-- Template -->
 
