@@ -47,7 +47,7 @@ This plugin aims to fix these discrepancies and give fire the power it deserves.
 
 ## Topics
 
-kotlin plugin minecraft paper fire minecraft-plugin mc survival difficulty mc-dev minecraft-plugins mc-kotlin papermc minecraft-survival minecraft-plugin-development minecraft-fire minecraft-paper minecraft-paper-plugin minecraft-paper-plugins minecraft-papermc-plugin
+kotlin plugin minecraft paper fire minecraft-plugin mc survival difficulty mc-dev game-mechanics minecraft-plugins mc-kotlin papermc minecraft-survival minecraft-plugin-development minecraft-fire minecraft-paper minecraft-paper-plugin minecraft-paper-plugins
 
 <!-- Link aliases -->
 
