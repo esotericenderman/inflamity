@@ -168,6 +168,9 @@ buildNumber.properties
 *.jpg
 *.jpeg
 
+#### Allow screenshots
+!docs/assets/images/screenshots/inflamity/*.png
+
 ## Libraries
 ### Node.js packages
 node_modules
