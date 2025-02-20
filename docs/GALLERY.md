@@ -36,7 +36,7 @@ What happens after setting just a few pillagers on fire.
 
 ![Burning pillager outpost][burning-outpost]
 
-## Burnt Pillager Outpost
+## Burnt Pillager Outpost ⭐
 
 Getting rid of this structure is even easier now.
 
