@@ -9,6 +9,11 @@ This file documents all of the features of this project.
 - Entities that are on fire will spread fire to blocks around them.
 - Hitting a mob that is on fire will spread the fire to you, and vice versa.
 
+## Fire Protection
+
+- Fire protection now protects even better against fire damage. Full fire protection makes you completely immune to fire.
+- Fire protection will sometimes prevent durability loss from fire, with full fire protection preventing all durability loss.
+
 ## Flint and Steel
 
 - Right-clicking entities with a flint and steel now sets them on fire.
