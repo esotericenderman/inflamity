@@ -16,7 +16,6 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
     @EventHandler(priority = EventPriority.LOW)
     fun onEntityBurn(event: EntityDamageEvent) {
         val entity = event.entity
-
         val isSuffocating = event.cause == EntityDamageEvent.DamageCause.SUFFOCATION
         if (isSuffocating) {
             entity.fireTicks = 0
@@ -24,12 +23,39 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
         }
 
         if (!event.isFireDamage()) return
+        println("Entity ${entity.name} took fire damage.")
 
         val container = entity.persistentDataContainer
 
         if (container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] == true) {
+            println("Ignoring this event.")
             container.remove(plugin.ignoreFireKey)
-            return
+
+            if (entity is LivingEntity) {
+                val equipment = entity.equipment
+
+                val head = equipment?.helmet
+                val chest = equipment?.chestplate
+                val legs = equipment?.leggings
+                val feet = equipment?.boots
+
+                if (event.cause == EntityDamageEvent.DamageCause.FIRE || event.cause == EntityDamageEvent.DamageCause.CAMPFIRE) {
+                    for (equipped in listOf(head, chest, legs, feet)) {
+                        if (equipped?.itemMeta !is Damageable) continue
+
+                        val factor = equipped.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) / 4.0
+
+                        if (Random.nextDouble() < factor) equipped.editMeta(Damageable::class.java) { meta ->
+                            if (meta.damage != 0) {
+                                meta.damage--
+                                println("Repairing armour piece ${meta.itemName()}.")
+                            }
+                        }
+                    }
+                }
+
+                return
+            }
         }
 
         if (entity is LivingEntity) {
@@ -46,6 +72,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
             val feetLevel = feet?.itemMeta?.getEnchantLevel(Enchantment.FIRE_PROTECTION) ?: 0
 
             val total = headLevel + chestLevel + legsLevel + feetLevel
+            println("Total FP level: $total")
 
             if (total == 16) {
                 event.isCancelled = true
@@ -54,16 +81,6 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
             }
 
             val factor = (16.0 - total) / 16.0
-
-            if (event.cause == EntityDamageEvent.DamageCause.FIRE || event.cause == EntityDamageEvent.DamageCause.CAMPFIRE) {
-                for (equipped in listOf(head, chest, legs, feet)) {
-                    if (equipped?.itemMeta !is Damageable) continue
-
-                    if (Random.nextDouble() > factor) equipped.editMeta(Damageable::class.java) {
-                            meta -> if (meta.damage != 0) meta.damage--
-                    }
-                }
-            }
 
             if (total != 0) {
                 val final = event.finalDamage
