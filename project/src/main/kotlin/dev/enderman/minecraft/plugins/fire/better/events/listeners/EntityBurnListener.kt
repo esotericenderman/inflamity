@@ -2,6 +2,8 @@ package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
+import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireWastingDurability
+import dev.enderman.minecraft.plugins.fire.better.events.fire.isSuffocationDamage
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
@@ -16,63 +18,39 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
     @EventHandler(priority = EventPriority.LOW)
     fun onEntityBurn(event: EntityDamageEvent) {
         val entity = event.entity
-        val isSuffocating = event.cause == EntityDamageEvent.DamageCause.SUFFOCATION
-        if (isSuffocating) {
+        if (event.isSuffocationDamage()) {
             entity.fireTicks = 0
             return
         }
 
         if (!event.isFireDamage()) return
-        println("Entity ${entity.name} took fire damage.")
 
         val container = entity.persistentDataContainer
 
         if (container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] == true) {
-            println("Ignoring this event.")
             container.remove(plugin.ignoreFireKey)
 
-            if (entity is LivingEntity) {
-                val equipment = entity.equipment
+            if (event.isFireWastingDurability()) {
+                (entity as LivingEntity).equipment?.armorContents?.forEach {
+                    if (it?.itemMeta !is Damageable) return
 
-                val head = equipment?.helmet
-                val chest = equipment?.chestplate
-                val legs = equipment?.leggings
-                val feet = equipment?.boots
+                    val factor = it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) / Enchantment.FIRE_PROTECTION.maxLevel.toDouble()
 
-                if (event.cause == EntityDamageEvent.DamageCause.FIRE || event.cause == EntityDamageEvent.DamageCause.CAMPFIRE) {
-                    for (equipped in listOf(head, chest, legs, feet)) {
-                        if (equipped?.itemMeta !is Damageable) continue
-
-                        val factor = equipped.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) / 4.0
-
-                        if (Random.nextDouble() < factor) equipped.editMeta(Damageable::class.java) { meta ->
-                            if (meta.damage != 0) {
-                                meta.damage--
-                                println("Repairing armour piece ${meta.itemName()}.")
-                            }
+                    if (Random.nextDouble() < factor) it.editMeta(Damageable::class.java) { meta ->
+                        if (meta.damage != 0) {
+                            meta.damage--
                         }
                     }
                 }
-
-                return
             }
+
+            return
         }
 
         if (entity is LivingEntity) {
-            val equipment = entity.equipment
+            var total = 0
 
-            val head = equipment?.helmet
-            val chest = equipment?.chestplate
-            val legs = equipment?.leggings
-            val feet = equipment?.boots
-
-            val headLevel = head?.itemMeta?.getEnchantLevel(Enchantment.FIRE_PROTECTION) ?: 0
-            val chestLevel = chest?.itemMeta?.getEnchantLevel(Enchantment.FIRE_PROTECTION) ?: 0
-            val legsLevel = legs?.itemMeta?.getEnchantLevel(Enchantment.FIRE_PROTECTION) ?: 0
-            val feetLevel = feet?.itemMeta?.getEnchantLevel(Enchantment.FIRE_PROTECTION) ?: 0
-
-            val total = headLevel + chestLevel + legsLevel + feetLevel
-            println("Total FP level: $total")
+            entity.equipment?.armorContents?.forEach { total += it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) }
 
             if (total == 16) {
                 event.isCancelled = true
