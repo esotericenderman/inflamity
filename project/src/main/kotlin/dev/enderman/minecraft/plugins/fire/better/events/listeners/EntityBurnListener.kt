@@ -46,8 +46,8 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
                     val factor = it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) / Enchantment.FIRE_PROTECTION.maxLevel.toDouble()
 
                     if (Random.nextDouble() < factor) it.editMeta(Damageable::class.java) { meta ->
-                        val container = meta.persistentDataContainer
-                        val previousDamage = container[plugin.previousDamageKey, PersistentDataType.INTEGER]!!
+                        val itemContainer = meta.persistentDataContainer
+                        val previousDamage = itemContainer[plugin.previousDamageKey, PersistentDataType.INTEGER]!!
 
                         meta.damage = previousDamage
                     }
