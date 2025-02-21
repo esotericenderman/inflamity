@@ -12,13 +12,11 @@ import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.Damageable
+import org.bukkit.persistence.PersistentDataType
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import org.mockbukkit.mockbukkit.world.WorldMock
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 class EntityBurnListenerTest : AbstractInflamityPluginTest() {
     private lateinit var player: Player
@@ -182,6 +180,37 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             for (item in equipment) {
                 assertEquals(itemDamage, (item.itemMeta as Damageable).damage, "Item damage should not change from fire with maximum fire protection.")
             }
+        }
+    }
+
+    @Test fun `entity ignores fire with correct key`() {
+        val key = plugin.ignoreFireKey
+
+        val damage = 1.0
+
+        for (cause in fireDamageTypes) {
+            player.persistentDataContainer[key, PersistentDataType.BOOLEAN] = true
+
+            val event = EntityDamageEvent(
+                player,
+                cause,
+                DamageSource.builder(DamageType.GENERIC).withDamageLocation(player.location).build(),
+                damage
+            )
+
+            val originalFinalDamage = event.finalDamage
+
+            event.callEvent()
+
+            assertFalse(event.isCancelled, "Event should not be cancelled when player has PDC key.")
+
+            assertEquals(null, player.persistentDataContainer[key, PersistentDataType.BOOLEAN], "Player should have PDC key removed after damage is applied.")
+            assertFalse(player.persistentDataContainer.has(key, PersistentDataType.BOOLEAN), "Player should have PDC key removed after damage is applied.")
+            assertFalse(player.persistentDataContainer.has(key), "Player should have PDC key removed after damage is applied.")
+
+            val newFinalDamage = event.finalDamage
+
+            assertEquals(originalFinalDamage, newFinalDamage, "Event should not change damage when player has PDC key.")
         }
     }
 }
