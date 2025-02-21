@@ -2,7 +2,7 @@ package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
-import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireWastingDurability
+import dev.enderman.minecraft.plugins.fire.better.events.fire.isDurabilityWastingFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isSuffocationDamage
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.LivingEntity
@@ -30,7 +30,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
         if (container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] == true) {
             container.remove(plugin.ignoreFireKey)
 
-            if (event.isFireWastingDurability()) {
+            if (event.isDurabilityWastingFireDamage()) {
                 (entity as LivingEntity).equipment?.armorContents?.forEach {
                     if (it?.itemMeta !is Damageable) return
 
