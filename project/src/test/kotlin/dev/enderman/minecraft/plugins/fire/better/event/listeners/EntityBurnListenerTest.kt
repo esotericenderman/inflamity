@@ -18,6 +18,8 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.mockbukkit.mockbukkit.world.WorldMock
+import kotlin.math.pow
+import kotlin.random.Random
 import kotlin.test.*
 
 class EntityBurnListenerTest : AbstractInflamityPluginTest() {
@@ -308,6 +310,60 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             }
 
             assertFalse(event.isCancelled, "Event should not be cancelled when wearing weird items.")
+        }
+    }
+
+    @Test fun `fire protection works with partially equipped armor`() {
+        val armor =  listOf(Material.IRON_HELMET, Material.IRON_CHESTPLATE, Material.IRON_LEGGINGS, Material.IRON_BOOTS)
+
+        for (cause in fireDamageTypes) {
+            for (i in 1..<(2.0.pow(armor.size.toDouble()).toInt())) {
+                val bitmap = i.toString(2).padStart(4, '0').split("").filter { s -> s.isNotBlank() }.map(String::toInt).map({ x -> x == 1 })
+
+                val itemDamage = Random.nextInt(5)
+
+                armor.forEachIndexed { index, armour ->
+                    if (!bitmap[index]) return@forEachIndexed
+
+                    setUpEnvironment()
+
+                    val item = ItemStack(armour)
+
+                    item.editMeta(Damageable::class.java) {
+                        it.damage = itemDamage
+                    }
+
+                    when (index) {
+                        0 -> player.equipment.helmet = item
+                        1 -> player.equipment.chestplate = item
+                        2 -> player.equipment.boots = item
+                        3 -> player.equipment.boots = item
+                    }
+                }
+
+                val damage = 1.0
+
+                val event = EntityDamageEvent(
+                    player,
+                    cause,
+                    DamageSource.builder(DamageType.GENERIC).withDamageLocation(player.location).build(),
+                    damage
+                )
+
+                val originalFinalDamage = event.finalDamage
+
+                event.callEvent()
+
+                val newFinalDamage = event.finalDamage
+
+                assertTrue(newFinalDamage <= originalFinalDamage, "Damage should be reduced or stay the same depending on fire protection level.")
+                assertFalse(event.isCancelled, "Event should not be cancelled with no fire protection.")
+
+                val newArmor = player.equipment.armorContents.filterNotNull()
+                newArmor.forEach {
+                    piece -> assertEquals(itemDamage, (piece.itemMeta as Damageable).damage, "Durability should decrease when taking fire damage.")
+                }
+            }
         }
     }
 }
