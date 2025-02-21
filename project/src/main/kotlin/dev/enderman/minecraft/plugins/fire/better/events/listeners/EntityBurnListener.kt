@@ -70,7 +70,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
                 container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
 
-                entity.equipment?.armorContents?.forEach {
+                entity.equipment?.armorContents?.filterNotNull()?.forEach {
                     val meta = it.itemMeta;
                     if (meta is Damageable) {
                         it.editMeta(Damageable::class.java) { editable ->
