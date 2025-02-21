@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.Damageable
 import org.bukkit.persistence.PersistentDataType
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.mockbukkit.mockbukkit.world.WorldMock
 import kotlin.test.*
 
@@ -231,6 +232,53 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             event.callEvent()
 
             assertEquals(10_000, nonLiving.fireTicks)
+        }
+    }
+
+    @Test fun `non-full armour partially protects from fire`() {
+        for (cause in fireDamageTypes) {
+            setUpEnvironment()
+
+            val helm = ItemStack(Material.IRON_HELMET)
+            val chest = ItemStack(Material.IRON_CHESTPLATE)
+            val leg = ItemStack(Material.IRON_LEGGINGS)
+            val boot = ItemStack(Material.IRON_BOOTS)
+
+            val itemDamage = 10
+
+            val plating = listOfNotNull(helm, chest, leg, boot)
+            for (plate in plating) {
+                plate.addEnchantment(Enchantment.FIRE_PROTECTION, 2)
+                plate.editMeta(Damageable::class.java) {
+                    it.damage = itemDamage
+                }
+            }
+
+            val equipped = player.equipment
+            equipped.helmet = helm
+            equipped.chestplate = chest
+            equipped.leggings = leg
+            equipped.boots = boot
+
+            val damage = 10.0
+
+            val event = EntityDamageEvent(
+                player,
+                cause,
+                DamageSource.builder(DamageType.GENERIC).withDamageLocation(player.location).build(),
+                damage
+            )
+
+            event.callEvent()
+
+            assertFalse(event.isCancelled, "Event should not be cancelled with non-full fire protection.")
+
+            for (item in plating) {
+                val meta = item.itemMeta as Damageable
+                val oneLessDurable = itemDamage + 1
+
+                assertTrue(meta.damage == oneLessDurable || meta.damage == itemDamage, "Item durability should either stay the same or decrease by one with non-full fire protection.")
+            }
         }
     }
 }
