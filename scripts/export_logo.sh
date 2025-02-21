@@ -3,6 +3,11 @@
 cd "$(dirname "$0")" || exit
 cd ../docs/assets/images/logos/ || exit
 
+if [ -f "inflamity.png" ]; then
+  echo "Logo already exists. Skipping processing."
+  exit 0
+fi
+
 gimp -n -i -b - <<EOF
 (let* (
   (scale-factor 10.0)
