@@ -235,7 +235,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
         }
     }
 
-    @Test fun `non-full armour partially protects from fire`() {
+    @Test fun `non-full armor partially protects from fire`() {
         for (cause in fireDamageTypes) {
             setUpEnvironment()
 
