@@ -11,6 +11,7 @@ import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.Damageable
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import org.mockbukkit.mockbukkit.world.WorldMock
@@ -140,9 +141,15 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             val leggings = ItemStack(Material.DIAMOND_LEGGINGS)
             val boots = ItemStack(Material.DIAMOND_BOOTS)
 
+            val itemDamage = 5
+
             val equipment = listOf(helmet, chest, leggings, boots)
             for (item in equipment) {
                 item.addEnchantment(Enchantment.FIRE_PROTECTION, 4)
+
+                item.editMeta(Damageable::class.java) {
+                    it.damage = itemDamage
+                }
             }
 
             val playerEquipped = player.equipment
@@ -171,6 +178,10 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             val maxHealth = player.getAttribute(Attribute.MAX_HEALTH)!!.value
 
             assertEquals(maxHealth, player.health, "Player should be on full health with full fire protection.")
+
+            for (item in equipment) {
+                assertEquals(itemDamage, (item.itemMeta as Damageable).damage, "Item damage should not change from fire with maximum fire protection.")
+            }
         }
     }
 }
