@@ -25,18 +25,9 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
         if (!event.isFireDamage()) return
 
-        println("Entity ${entity.name} took fire damage.")
-
         val container = entity.persistentDataContainer
 
-        if (entity is LivingEntity) {
-            entity.equipment?.armorContents?.forEach {
-                val meta = it.itemMeta; if (meta is Damageable) println("${it.type}: ${meta.damage}")
-            }
-        }
-
         if (container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] == true) {
-            println("Ignoring this event.")
             container.remove(plugin.ignoreFireKey)
 
             if (event.isDurabilityWastingFireDamage()) {
@@ -82,8 +73,6 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
                 entity.equipment?.armorContents?.forEach {
                     val meta = it.itemMeta;
                     if (meta is Damageable) {
-                        println("${it.type}: ${meta.damage}")
-
                         it.editMeta(Damageable::class.java) { editable ->
                             editable.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = editable.damage
                         }
