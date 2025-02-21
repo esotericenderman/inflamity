@@ -48,6 +48,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
                     if (Random.nextDouble() < factor) it.editMeta(Damageable::class.java) { meta ->
                         val itemContainer = meta.persistentDataContainer
                         val previousDamage = itemContainer[plugin.previousDamageKey, PersistentDataType.INTEGER]!!
+                        itemContainer.remove(plugin.previousDamageKey)
 
                         meta.damage = previousDamage
                     }
