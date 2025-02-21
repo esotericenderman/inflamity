@@ -269,6 +269,8 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
                 damage
             )
 
+            val originalFinalDamage = event.finalDamage
+
             event.callEvent()
 
             assertFalse(event.isCancelled, "Event should not be cancelled with non-full fire protection.")
@@ -279,6 +281,10 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
 
                 assertTrue(meta.damage == oneLessDurable || meta.damage == itemDamage, "Item durability should either stay the same or decrease by one with non-full fire protection.")
             }
+
+            val newFinalDamage = event.finalDamage
+
+            assertTrue(newFinalDamage < originalFinalDamage, "Damage should be reduced when wearing partial fire protection.")
         }
     }
 
