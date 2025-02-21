@@ -281,4 +281,27 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             }
         }
     }
+
+    @Test fun `equipping weird items does not throw errors`() {
+        for (cause in fireDamageTypes) {
+            val pumpkin = ItemStack(Material.PUMPKIN)
+
+            player.equipment.helmet = pumpkin
+
+            val damage = 1.0
+
+            val event = EntityDamageEvent(
+                player,
+                cause,
+                DamageSource.builder(DamageType.GENERIC).withDamageLocation(player.location).build(),
+                damage
+            )
+
+            assertDoesNotThrow("Wearing weird items should not lead to errors.") {
+                event.callEvent()
+            }
+
+            assertFalse(event.isCancelled, "Event should not be cancelled when wearing weird items.")
+        }
+    }
 }
