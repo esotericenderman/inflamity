@@ -31,8 +31,8 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
             container.remove(plugin.ignoreFireKey)
 
             if (event.isDurabilityWastingFireDamage()) {
-                (entity as LivingEntity).equipment?.armorContents?.forEach {
-                    if (it?.itemMeta !is Damageable) return
+                (entity as LivingEntity).equipment?.armorContents?.filterNotNull()?.forEach {
+                    if (it.itemMeta !is Damageable) return
 
                     val factor = it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) / Enchantment.FIRE_PROTECTION.maxLevel.toDouble()
 
@@ -52,7 +52,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
         if (entity is LivingEntity) {
             var total = 0
 
-            entity.equipment?.armorContents?.forEach { total += it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) }
+            entity.equipment?.armorContents?.filterNotNull()?.forEach { total += it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) }
 
             if (total == 16) {
                 event.isCancelled = true
