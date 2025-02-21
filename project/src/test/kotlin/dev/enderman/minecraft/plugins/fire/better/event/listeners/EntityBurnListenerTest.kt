@@ -3,16 +3,20 @@ package dev.enderman.minecraft.plugins.fire.better.event.listeners
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
 import dev.enderman.minecraft.plugins.fire.better.events.fire.fireDamageTypes
 import org.bukkit.Material
+import org.bukkit.attribute.Attribute
 import org.bukkit.block.BlockFace
 import org.bukkit.damage.DamageSource
 import org.bukkit.damage.DamageType
+import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityDamageEvent
+import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import org.mockbukkit.mockbukkit.world.WorldMock
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class EntityBurnListenerTest : AbstractInflamityPluginTest() {
@@ -124,6 +128,49 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             event.callEvent()
 
             assertTrue(player.fireTicks <= 0, "Generic damage does not set entities on fire.")
+        }
+    }
+
+    @Test fun `entity with full fire protection is immune to fire`() {
+        for (damageCause in fireDamageTypes) {
+            setUpEnvironment()
+
+            val helmet = ItemStack(Material.DIAMOND_HELMET)
+            val chest = ItemStack(Material.DIAMOND_CHESTPLATE)
+            val leggings = ItemStack(Material.DIAMOND_LEGGINGS)
+            val boots = ItemStack(Material.DIAMOND_BOOTS)
+
+            val equipment = listOf(helmet, chest, leggings, boots)
+            for (item in equipment) {
+                item.addEnchantment(Enchantment.FIRE_PROTECTION, 4)
+            }
+
+            val playerEquipped = player.equipment
+            playerEquipped.helmet = helmet
+            playerEquipped.chestplate = chest
+            playerEquipped.leggings = leggings
+            playerEquipped.boots = boots
+
+            val damage = 1.0
+
+            val event = EntityDamageEvent(
+                player,
+                damageCause,
+                DamageSource.builder(DamageType.GENERIC).withDamageLocation(player.location).withDirectEntity(player).withCausingEntity(player).build(),
+                damage
+            )
+
+            event.callEvent()
+
+            if (!event.isCancelled) {
+                player.damage(damage)
+            }
+
+            assertTrue(player.fireTicks <= 0, "Player is not set on fire if they have full fire protection.")
+
+            val maxHealth = player.getAttribute(Attribute.MAX_HEALTH)!!.value
+
+            assertEquals(maxHealth, player.health, "Player should be on full health with full fire protection.")
         }
     }
 }
