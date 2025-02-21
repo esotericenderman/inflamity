@@ -46,9 +46,10 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
                     val factor = it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) / Enchantment.FIRE_PROTECTION.maxLevel.toDouble()
 
                     if (Random.nextDouble() < factor) it.editMeta(Damageable::class.java) { meta ->
-                        if (meta.damage != 0) {
-                            meta.damage--
-                        }
+                        val container = meta.persistentDataContainer
+                        val previousDamage = container[plugin.previousDamageKey, PersistentDataType.INTEGER]!!
+
+                        meta.damage = previousDamage
                     }
                 }
             }
@@ -78,7 +79,14 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
                 container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
 
                 entity.equipment?.armorContents?.forEach {
-                    val meta = it.itemMeta; if (meta is Damageable) println("${it.type}: ${meta.damage}")
+                    val meta = it.itemMeta;
+                    if (meta is Damageable) {
+                        println("${it.type}: ${meta.damage}")
+
+                        it.editMeta(Damageable::class.java) { editable ->
+                            editable.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = editable.damage
+                        }
+                    }
                 }
 
                 entity.damage(toDeal, event.damageSource)
