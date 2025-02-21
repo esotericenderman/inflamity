@@ -9,6 +9,7 @@ import org.bukkit.damage.DamageSource
 import org.bukkit.damage.DamageType
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
+import org.bukkit.entity.Snowball
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.Damageable
@@ -211,6 +212,25 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             val newFinalDamage = event.finalDamage
 
             assertEquals(originalFinalDamage, newFinalDamage, "Event should not change damage when player has PDC key.")
+        }
+    }
+
+    @Test fun `non-living entity is set on fire`() {
+        for (cause in fireDamageTypes) {
+            val nonLiving = world.spawn(world.spawnLocation, Snowball::class.java)
+
+            val damage = 1.0
+
+            val event = EntityDamageEvent(
+                nonLiving,
+                cause,
+                DamageSource.builder(DamageType.ON_FIRE).withDamageLocation(nonLiving.location).build(),
+                damage
+            )
+
+            event.callEvent()
+
+            assertEquals(10_000, nonLiving.fireTicks)
         }
     }
 }
