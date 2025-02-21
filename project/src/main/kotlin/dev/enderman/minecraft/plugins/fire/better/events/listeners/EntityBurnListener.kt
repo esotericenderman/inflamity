@@ -65,7 +65,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
                 }
             }
 
-            if (total == 0) {
+            if (total != 0) {
                 val final = event.finalDamage
                 val toDeal = final * factor
 
