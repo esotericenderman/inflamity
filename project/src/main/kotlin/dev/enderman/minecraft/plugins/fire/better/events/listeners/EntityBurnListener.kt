@@ -29,7 +29,8 @@ import kotlin.random.Random
 val fireImmuneEntities = listOfNotNull(
     EntityType.IRON_GOLEM,
     EntityType.ENDER_PEARL,
-    EntityType.EGG
+    EntityType.EGG,
+    EntityType.POTION
 )
 
 fun Entity.isImmuneToFire(): Boolean {
