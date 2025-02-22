@@ -4,7 +4,8 @@ import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionFactor
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
-import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmor
+import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmorIndexed
+import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmorMetaIndexed
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -58,26 +59,22 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
         container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
 
-        entity.loopDamageableArmor { meta, item ->
-            println("Damage of ${item.type}: ${meta.damage}")
-            meta.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = meta.damage
+        val damages = mutableListOf<Int>()
+
+        entity.loopDamageableArmorMetaIndexed { meta, index ->
+            damages.add(index, meta.damage)
         }
 
         plugin.server.scheduler.runTaskLater(
             plugin,
             { ->
-                entity.loopDamageableArmor { meta, item ->
+                entity.loopDamageableArmorIndexed { meta, item, index ->
                     println("Damage of ${item.type}: ${meta.damage}")
                     val itemFactor = item.getFireProtectionFactor()
 
-                    if (Random.nextDouble() > itemFactor) return@loopDamageableArmor
+                    if (Random.nextDouble() > itemFactor) return@loopDamageableArmorIndexed
 
-                    val itemContainer = meta.persistentDataContainer
-                    val previousDamage = itemContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] ?: return@loopDamageableArmor
-
-                    itemContainer.remove(plugin.previousDamageKey)
-
-                    meta.damage = previousDamage
+                    meta.damage = damages[index]
                 }
             },
             1L
