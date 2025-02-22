@@ -9,6 +9,7 @@ import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableAr
 import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmorMeta
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Creeper
+import org.bukkit.entity.Entity
 
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
@@ -23,6 +24,10 @@ import kotlin.random.Random
 val fireImmuneEntities = listOfNotNull(
     EntityType.IRON_GOLEM
 )
+
+fun Entity.isImmuneToFire(): Boolean {
+    return fireImmuneEntities.contains(type) || (this is Creeper && this.isPowered)
+}
 
 class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
 
@@ -40,7 +45,7 @@ class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
 
         if (!event.isFireDamage()) return
 
-        if (fireImmuneEntities.contains(entity.type)) {
+        if (entity.isImmuneToFire()) {
             entity.extinguish()
             event.isCancelled = true
             return
