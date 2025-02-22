@@ -30,6 +30,7 @@ This file documents all of the features of this project.
 ## Non-Flammable Mobs
 
 - Some mobs, such as iron golems, are now immune to fire!
+- Some entities, such as eggs and ender pearls will no longer have visual fire.
 
 ## Projectiles
 
