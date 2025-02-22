@@ -6,7 +6,6 @@ import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isDurabilityWastingFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
 import dev.enderman.minecraft.plugins.fire.better.utility.loopDamageableArmor
-import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -38,18 +37,18 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
             container.remove(plugin.ignoreFireKey)
 
-            if (event.isDurabilityWastingFireDamage()) {
-                entity.loopDamageableArmor { meta, item ->
-                    val factor = item.getFireProtectionFactor()
+            if (!event.isDurabilityWastingFireDamage()) return
 
-                    if (Random.nextDouble() > factor) return@loopDamageableArmor
+            entity.loopDamageableArmor { meta, item ->
+                val factor = item.getFireProtectionFactor()
 
-                    val itemContainer = meta.persistentDataContainer
-                    val previousDamage = itemContainer[plugin.previousDamageKey, PersistentDataType.INTEGER]!!
-                    itemContainer.remove(plugin.previousDamageKey)
+                if (Random.nextDouble() > factor) return@loopDamageableArmor
 
-                    meta.damage = previousDamage
-                }
+                val itemContainer = meta.persistentDataContainer
+                val previousDamage = itemContainer[plugin.previousDamageKey, PersistentDataType.INTEGER]!!
+                itemContainer.remove(plugin.previousDamageKey)
+
+                meta.damage = previousDamage
             }
 
             return
@@ -65,19 +64,19 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
             return
         }
 
-        if (factor != 0.0) {
-            val final = event.finalDamage
-            val toDeal = final * (1 - factor)
+        if (factor == 0.0) return
 
-            event.isCancelled = true
+        val final = event.finalDamage
+        val toDeal = final * (1 - factor)
 
-            container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
+        event.isCancelled = true
 
-            entity.loopDamageableArmor { meta, _ ->
-                meta.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = meta.damage
-            }
+        container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
 
-            entity.damage(toDeal, event.damageSource)
+        entity.loopDamageableArmor { meta, _ ->
+            meta.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = meta.damage
         }
+
+        entity.damage(toDeal, event.damageSource)
     }
 }
