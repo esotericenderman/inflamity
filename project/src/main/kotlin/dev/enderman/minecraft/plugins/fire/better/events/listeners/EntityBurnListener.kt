@@ -40,7 +40,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
             if (event.isDurabilityWastingFireDamage()) {
                 entity.loopDamageableArmor { meta, item ->
-                    val factor = item.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) / Enchantment.FIRE_PROTECTION.maxLevel.toDouble()
+                    val factor = item.getFireProtectionFactor()
 
                     if (Random.nextDouble() > factor) return@loopDamageableArmor
 

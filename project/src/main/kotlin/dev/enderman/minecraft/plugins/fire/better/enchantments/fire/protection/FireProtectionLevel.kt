@@ -3,6 +3,7 @@ package dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
+import org.bukkit.inventory.ItemStack
 
 fun Entity.getFireProtectionLevel(): Int {
     if (this !is LivingEntity) return 0
@@ -24,4 +25,12 @@ fun Entity.getFireProtectionFactor(): Double {
     if (this !is LivingEntity) return 0.0
 
     return getFireProtectionLevel() / getMaxFireProtectionLevel().toDouble()
+}
+
+fun ItemStack.getFireProtectionLevel(): Int {
+    return getEnchantmentLevel(Enchantment.FIRE_PROTECTION)
+}
+
+fun ItemStack.getFireProtectionFactor(): Double {
+    return getFireProtectionLevel() / Enchantment.FIRE_PROTECTION.maxLevel.toDouble()
 }
