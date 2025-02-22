@@ -3,6 +3,8 @@ package dev.enderman.minecraft.plugins.fire.better
 import dev.enderman.minecraft.plugins.fire.better.events.listeners.*
 import org.bukkit.plugin.java.JavaPlugin
 
+const val FIRE_DURATION = 10_000
+
 open class InflamityPlugin : JavaPlugin() {
 
     override fun onEnable() {

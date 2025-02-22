@@ -1,5 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
+import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -13,6 +14,6 @@ class FireExtinguishListener : Listener {
         if (block.type != Material.FIRE) return
 
         event.isCancelled = true
-        event.player.fireTicks = 10_000
+        event.player.fireTicks = FIRE_DURATION
     }
 }

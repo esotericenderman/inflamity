@@ -1,5 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
+import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
@@ -25,7 +26,7 @@ class EntityContactListener : Listener {
 
         if (!oneOnFire) return
 
-        entity.fireTicks = 10_000
-        damager.fireTicks = 10_000
+        entity.fireTicks = FIRE_DURATION
+        damager.fireTicks = FIRE_DURATION
     }
 }

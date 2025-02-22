@@ -1,5 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
+import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import org.apache.commons.lang3.BooleanUtils
 import org.bukkit.Material
 import org.bukkit.Sound
@@ -48,6 +49,6 @@ class EntityIgniteListener : Listener {
             item.damage(1, player)
         }
 
-        entity.fireTicks = 10_000
+        entity.fireTicks = FIRE_DURATION
     }
 }

@@ -1,5 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
+import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionFactor
 import dev.enderman.minecraft.plugins.fire.better.entity.extinguish
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
@@ -39,7 +40,7 @@ class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
             return
         }
 
-        entity.fireTicks = 10_000
+        entity.fireTicks = FIRE_DURATION
 
         if (entity !is LivingEntity) return
 
