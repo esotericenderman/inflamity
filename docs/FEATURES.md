@@ -29,3 +29,7 @@ This file documents all of the features of this project.
 ## Non-Flammable Mobs
 
 - Some mobs, such as iron golems, are now immune to fire!
+
+## Projectiles
+
+- Projectiles will now carry the fire of their shooter.
