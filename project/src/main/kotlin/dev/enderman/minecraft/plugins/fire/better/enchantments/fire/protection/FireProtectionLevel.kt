@@ -10,7 +10,11 @@ fun Entity.getFireProtectionLevel(): Int {
 
     var total = 0
 
-    equipment?.armorContents?.filterNotNull()?.forEach { total += it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) }
+    equipment?.armorContents?.filterNotNull()?.forEach {
+        if (!it.hasItemMeta()) return@forEach
+
+        total += it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION)
+    }
 
     return total
 }
