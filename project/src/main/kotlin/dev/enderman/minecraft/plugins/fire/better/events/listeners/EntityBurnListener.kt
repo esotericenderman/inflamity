@@ -8,6 +8,7 @@ import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocati
 import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmor
 import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmorMeta
 import org.bukkit.NamespacedKey
+import org.bukkit.entity.Creeper
 
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
@@ -44,6 +45,8 @@ class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
             event.isCancelled = true
             return
         }
+
+        if (entity is Creeper && !entity.isPowered) entity.ignite()
 
         val container = entity.persistentDataContainer
 

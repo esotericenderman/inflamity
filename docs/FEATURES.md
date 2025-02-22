@@ -18,6 +18,10 @@ This file documents all of the features of this project.
 
 - Right-clicking entities with a flint and steel now sets them on fire, this will anger the entity, so be careful!
 
+## Creepers
+
+- If a creeper is on fire, it will ignite!
+
 ## Slimes
 
 - If a slime splits while burning, the resulting smaller slimes will also be on fire.
