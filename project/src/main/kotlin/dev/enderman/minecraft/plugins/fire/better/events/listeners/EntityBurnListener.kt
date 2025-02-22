@@ -21,6 +21,11 @@ import org.bukkit.persistence.PersistentDataType
 import org.bukkit.plugin.java.JavaPlugin
 import kotlin.random.Random
 
+/**
+ * A list of entities that are COMPLETELY IMMUNE to fire.
+ *
+ * These entities will not catch fire, and they will not take damage from fire.
+ */
 val fireImmuneEntities = listOfNotNull(
     EntityType.IRON_GOLEM
 )

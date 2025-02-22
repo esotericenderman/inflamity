@@ -5,6 +5,9 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityCombustEvent
 
+/**
+ * The list of entities that instantly die (are removed) when they enter fire.
+ */
 val extremeCombustionEntities = listOfNotNull(
     EntityType.SNOWBALL
 )
