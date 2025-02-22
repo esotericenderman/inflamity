@@ -1,9 +1,15 @@
 package dev.enderman.minecraft.plugins.fire.better
 
 import dev.enderman.minecraft.plugins.fire.better.events.listeners.*
+import org.bukkit.GameMode
 import org.bukkit.plugin.java.JavaPlugin
 
 const val FIRE_DURATION = 10_000
+
+val gameModesWithConsequences = listOfNotNull(
+    GameMode.SURVIVAL,
+    GameMode.ADVENTURE
+)
 
 open class InflamityPlugin : JavaPlugin() {
 
