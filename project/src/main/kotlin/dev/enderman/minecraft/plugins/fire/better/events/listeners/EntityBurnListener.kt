@@ -8,6 +8,8 @@ import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocati
 import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmor
 import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmorMeta
 import org.bukkit.NamespacedKey
+
+import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -16,6 +18,10 @@ import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.persistence.PersistentDataType
 import org.bukkit.plugin.java.JavaPlugin
 import kotlin.random.Random
+
+val fireImmuneEntities = listOfNotNull(
+    EntityType.IRON_GOLEM
+)
 
 class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
 
@@ -32,6 +38,12 @@ class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
         }
 
         if (!event.isFireDamage()) return
+
+        if (fireImmuneEntities.contains(entity.type)) {
+            entity.extinguish()
+            event.isCancelled = true
+            return
+        }
 
         val container = entity.persistentDataContainer
 
