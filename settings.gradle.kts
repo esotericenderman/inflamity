@@ -2,8 +2,12 @@ rootProject.name = "inflamity"
 
 include("project")
 
-exec {
-    commandLine("bash", "./scripts/export_logo.sh")
+val logo = File("docs/assets/images/logos/inflamity.png")
 
-    isIgnoreExitValue = true
+if (!logo.exists()) {
+    exec {
+        commandLine("bash", "./scripts/export_logo.sh")
+
+        isIgnoreExitValue = true
+    }
 }
