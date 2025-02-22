@@ -6,11 +6,18 @@ import org.bukkit.plugin.java.JavaPlugin
 open class InflamityPlugin : JavaPlugin() {
 
     override fun onEnable() {
-        server.pluginManager.registerEvents(EntityIgniteListener(), this)
-        server.pluginManager.registerEvents(FireExtinguishListener(), this)
-        server.pluginManager.registerEvents(EntityFireSpreadListener(), this)
-        server.pluginManager.registerEvents(EntityBurnListener(this), this)
-        server.pluginManager.registerEvents(EntityContactListener(), this)
-        server.pluginManager.registerEvents(BurningSlimeSplitListener(), this)
+        val manager = server.pluginManager
+
+        val events = listOf(
+            EntityIgniteListener(),
+            FireExtinguishListener(),
+            EntityFireSpreadListener(),
+            EntityContactListener(),
+            BurningSlimeSplitListener(),
+
+            EntityBurnListener(this)
+        )
+
+        events.forEach { manager.registerEvents(it, this) }
     }
 }
