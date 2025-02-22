@@ -22,6 +22,8 @@ val extremeCombustionEntities = listOfNotNull(
  * This does not mean that they will not take damage while standing in fire.
  *
  * For example, a snow golem will still be damaged when standing in fire, but it makes no sense for it to burn as there isn't anything *to* burn and sustain the fire.
+ *
+ * In other words, these entities will not catch fire, but will still take damage while standing in fire blocks.
  */
 val nonFlammableEntities = listOfNotNull(
     EntityType.SNOW_GOLEM
