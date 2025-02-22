@@ -6,6 +6,7 @@ import dev.enderman.minecraft.plugins.fire.better.entity.extinguish
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
 import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmor
+import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmorMeta
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -55,7 +56,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
         container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
 
-        entity.loopDamageableArmor { meta, item ->
+        entity.loopDamageableArmorMeta { meta ->
             meta.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = meta.damage
         }
 
