@@ -6,6 +6,7 @@ import org.bukkit.Sound
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerInteractAtEntityEvent
+import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 
 class EntityIgniteListener : Listener {
@@ -32,8 +33,10 @@ class EntityIgniteListener : Listener {
 
         if (mainHandHolding) player.swingMainHand() else player.swingOffHand()
 
-        val item = if (mainHandHolding) heldItem else otherItem
-        item.damage(1, player)
+        if (event.hand == EquipmentSlot.HAND) {
+            val item = if (mainHandHolding) heldItem else otherItem
+            item.damage(1, player)
+        }
 
         entity.fireTicks = 10_000
     }
