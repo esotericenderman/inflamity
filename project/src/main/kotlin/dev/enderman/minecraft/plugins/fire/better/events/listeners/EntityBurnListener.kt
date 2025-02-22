@@ -18,6 +18,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
     @EventHandler(priority = EventPriority.LOW)
     fun onEntityBurn(event: EntityDamageEvent) {
         val entity = event.entity
+
         if (event.isSuffocationDamage()) {
             entity.fireTicks = 0
             return
