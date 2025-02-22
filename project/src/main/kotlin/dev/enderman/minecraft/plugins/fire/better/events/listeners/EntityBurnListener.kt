@@ -4,8 +4,7 @@ import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionFactor
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
-import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmorIndexed
-import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmorMetaIndexed
+import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmor
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -59,22 +58,26 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
         container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
 
-        val damages = mutableListOf<Int>()
-
-        entity.loopDamageableArmorMetaIndexed { meta, index ->
-            damages.add(index, meta.damage)
+        entity.loopDamageableArmor { meta, item ->
+            println("Damage of ${item.type}: ${meta.damage}")
+            meta.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = meta.damage
         }
 
         plugin.server.scheduler.runTaskLater(
             plugin,
             { ->
-                entity.loopDamageableArmorIndexed { meta, item, index ->
+                entity.loopDamageableArmor { meta, item ->
                     println("Damage of ${item.type}: ${meta.damage}")
                     val itemFactor = item.getFireProtectionFactor()
 
-                    if (Random.nextDouble() > itemFactor) return@loopDamageableArmorIndexed
+                    if (Random.nextDouble() > itemFactor) return@loopDamageableArmor
 
-                    meta.damage = damages[index]
+                    val itemContainer = meta.persistentDataContainer
+                    val previousDamage = itemContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] ?: return@loopDamageableArmor
+
+                    itemContainer.remove(plugin.previousDamageKey)
+
+                    meta.damage = previousDamage
                 }
             },
             1L
