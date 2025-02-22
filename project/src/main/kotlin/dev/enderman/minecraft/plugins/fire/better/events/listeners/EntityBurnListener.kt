@@ -32,7 +32,6 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
         if (container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] == true) {
             container.remove(plugin.ignoreFireKey)
-
             return
         }
 
