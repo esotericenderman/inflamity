@@ -28,8 +28,6 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
         println("Entity ${entity.name} took damage from fire because of ${event.cause}.")
 
-        entity.fireTicks = 10_000
-
         val container = entity.persistentDataContainer
 
         if (container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] == true) {
@@ -53,6 +51,8 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
             return
         }
+
+        entity.fireTicks = 10_000
 
         if (entity !is LivingEntity) return
 
