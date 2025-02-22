@@ -39,7 +39,7 @@ class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
     private val ignoreFireKey = NamespacedKey(plugin, "ignore_fire")
     private val previousDamageKey = NamespacedKey(plugin, "previous_durability")
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(priority = EventPriority.NORMAL)
     fun onEntityBurn(event: EntityDamageEvent) {
         if (event.isCancelled) return
         if (!event.isFireDamage()) return
