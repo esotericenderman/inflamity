@@ -41,12 +41,9 @@ class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     fun onEntityBurn(event: EntityDamageEvent) {
-        val entity = event.entity
+        if (event.isCancelled) return
 
-        if (event.isSuffocationDamage()) {
-            entity.extinguish()
-            return
-        }
+        val entity = event.entity
 
         if (!event.isFireDamage()) return
 
