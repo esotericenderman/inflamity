@@ -58,34 +58,34 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
             return
         }
 
-        if (entity is LivingEntity) {
-            val factor = entity.getFireProtectionFactor()
+        if (entity !is LivingEntity) return
 
-            if (factor == 1.0) {
-                event.isCancelled = true
-                entity.fireTicks = 0
-                return
-            }
+        val factor = entity.getFireProtectionFactor()
 
-            if (factor != 0.0) {
-                val final = event.finalDamage
-                val toDeal = final * (1 - factor)
+        if (factor == 1.0) {
+            event.isCancelled = true
+            entity.fireTicks = 0
+            return
+        }
 
-                event.isCancelled = true
+        if (factor != 0.0) {
+            val final = event.finalDamage
+            val toDeal = final * (1 - factor)
 
-                container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
+            event.isCancelled = true
 
-                entity.equipment?.armorContents?.filterNotNull()?.forEach {
-                    val meta = it.itemMeta;
-                    if (meta is Damageable) {
-                        it.editMeta(Damageable::class.java) { editable ->
-                            editable.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = editable.damage
-                        }
+            container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
+
+            entity.equipment?.armorContents?.filterNotNull()?.forEach {
+                val meta = it.itemMeta;
+                if (meta is Damageable) {
+                    it.editMeta(Damageable::class.java) { editable ->
+                        editable.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = editable.damage
                     }
                 }
-
-                entity.damage(toDeal, event.damageSource)
             }
+
+            entity.damage(toDeal, event.damageSource)
         }
     }
 }
