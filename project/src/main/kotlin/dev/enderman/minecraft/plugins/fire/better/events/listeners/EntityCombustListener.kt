@@ -16,6 +16,17 @@ val extremeCombustionEntities = listOfNotNull(
     EntityType.SNOWBALL
 )
 
+/**
+ * This is a list of entities that have no means of sustaining a fire.
+ *
+ * This does not mean that they will not take damage while standing in fire.
+ *
+ * For example, a snow golem will still be damaged when standing in fire, but it makes no sense for it to burn as there isn't anything *to* burn and sustain the fire.
+ */
+val nonFlammableEntities = listOfNotNull(
+    EntityType.SNOW_GOLEM
+)
+
 class EntityCombustListener : Listener {
     @EventHandler
     private fun onEntityCombust(event: EntityCombustEvent) {
@@ -44,6 +55,19 @@ class EntityCombustListener : Listener {
         val entity = event.entity
 
         if (!entity.isImmuneToFire()) return
+
+        entity.extinguish()
+        event.isCancelled = true
+    }
+
+    @EventHandler
+    private fun onNonFlammableBurn(event: EntityDamageEvent) {
+        if (!event.isFireDamage()) return
+        if (event.cause != EntityDamageEvent.DamageCause.FIRE_TICK) return
+
+        val entity = event.entity
+
+        if (!nonFlammableEntities.contains(entity.type)) return
 
         entity.extinguish()
         event.isCancelled = true
