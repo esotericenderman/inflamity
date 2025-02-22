@@ -1,6 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
+import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionFactor
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionLevel
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isDurabilityWastingFireDamage
@@ -29,6 +30,8 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
         println("Entity ${entity.name} took damage from fire because of ${event.cause}.")
 
+        entity.fireTicks = 10_000
+
         val container = entity.persistentDataContainer
 
         if (container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] == true) {
@@ -56,19 +59,17 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
         }
 
         if (entity is LivingEntity) {
-            val total = entity.getFireProtectionLevel()
+            val factor = entity.getFireProtectionFactor()
 
-            if (total == 16) {
+            if (factor == 1.0) {
                 event.isCancelled = true
                 entity.fireTicks = 0
                 return
             }
 
-            val factor = (16.0 - total) / 16.0
-
-            if (total != 0) {
+            if (factor != 0.0) {
                 val final = event.finalDamage
-                val toDeal = final * factor
+                val toDeal = final * (1 - factor)
 
                 event.isCancelled = true
 
@@ -86,7 +87,5 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
                 entity.damage(toDeal, event.damageSource)
             }
         }
-
-        entity.fireTicks = 10_000
     }
 }

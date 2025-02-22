@@ -13,3 +13,15 @@ fun Entity.getFireProtectionLevel(): Int {
 
     return total
 }
+
+fun Entity.getMaxFireProtectionLevel(): Int {
+    if (this !is LivingEntity) return 0
+
+    return Enchantment.FIRE_PROTECTION.maxLevel * (equipment?.armorContents?.size ?: 0)
+}
+
+fun Entity.getFireProtectionFactor(): Double {
+    if (this !is LivingEntity) return 0.0
+
+    return getFireProtectionLevel() / getMaxFireProtectionLevel().toDouble()
+}
