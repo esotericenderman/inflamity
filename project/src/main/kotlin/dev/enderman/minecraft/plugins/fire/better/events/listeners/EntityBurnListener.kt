@@ -3,7 +3,7 @@ package dev.enderman.minecraft.plugins.fire.better.events.listeners
 import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isDurabilityWastingFireDamage
-import dev.enderman.minecraft.plugins.fire.better.events.fire.isSuffocationDamage
+import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler

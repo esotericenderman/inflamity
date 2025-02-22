@@ -1,4 +1,4 @@
-package dev.enderman.minecraft.plugins.fire.better.events.fire
+package dev.enderman.minecraft.plugins.fire.better.events.suffocation
 
 import org.bukkit.event.entity.EntityDamageEvent
 
