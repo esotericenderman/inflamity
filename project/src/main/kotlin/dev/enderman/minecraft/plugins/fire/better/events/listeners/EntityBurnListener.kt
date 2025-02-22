@@ -27,7 +27,9 @@ import kotlin.random.Random
  * These entities will not catch fire, and they will not take damage from fire.
  */
 val fireImmuneEntities = listOfNotNull(
-    EntityType.IRON_GOLEM
+    EntityType.IRON_GOLEM,
+    EntityType.ENDER_PEARL,
+    EntityType.EGG
 )
 
 fun Entity.isImmuneToFire(): Boolean {
@@ -45,13 +47,6 @@ class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
         if (!event.isFireDamage()) return
 
         val entity = event.entity
-
-        if (entity.isImmuneToFire()) {
-            entity.extinguish()
-            event.isCancelled = true
-            return
-        }
-
         if (entity is Creeper && !entity.isPowered) entity.ignite()
 
         val container = entity.persistentDataContainer
