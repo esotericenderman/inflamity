@@ -1,6 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
+import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionLevel
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isDurabilityWastingFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
@@ -55,9 +56,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
         }
 
         if (entity is LivingEntity) {
-            var total = 0
-
-            entity.equipment?.armorContents?.filterNotNull()?.forEach { total += it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) }
+            val total = entity.getFireProtectionLevel()
 
             if (total == 16) {
                 event.isCancelled = true
