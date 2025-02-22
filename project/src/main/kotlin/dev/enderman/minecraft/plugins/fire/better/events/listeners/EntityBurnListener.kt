@@ -2,18 +2,16 @@ package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionFactor
-import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionLevel
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isDurabilityWastingFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
-import dev.enderman.minecraft.plugins.fire.better.utility.loopArmor
+import dev.enderman.minecraft.plugins.fire.better.utility.loopDamageableArmor
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageEvent
-import org.bukkit.inventory.meta.Damageable
 import org.bukkit.persistence.PersistentDataType
 import kotlin.random.Random
 
@@ -41,18 +39,16 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
             container.remove(plugin.ignoreFireKey)
 
             if (event.isDurabilityWastingFireDamage()) {
-                entity.loopArmor {
-                    if (it.itemMeta !is Damageable) return@loopArmor
+                entity.loopDamageableArmor { meta, item ->
+                    val factor = item.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) / Enchantment.FIRE_PROTECTION.maxLevel.toDouble()
 
-                    val factor = it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) / Enchantment.FIRE_PROTECTION.maxLevel.toDouble()
+                    if (Random.nextDouble() > factor) return@loopDamageableArmor
 
-                    if (Random.nextDouble() < factor) it.editMeta(Damageable::class.java) { meta ->
-                        val itemContainer = meta.persistentDataContainer
-                        val previousDamage = itemContainer[plugin.previousDamageKey, PersistentDataType.INTEGER]!!
-                        itemContainer.remove(plugin.previousDamageKey)
+                    val itemContainer = meta.persistentDataContainer
+                    val previousDamage = itemContainer[plugin.previousDamageKey, PersistentDataType.INTEGER]!!
+                    itemContainer.remove(plugin.previousDamageKey)
 
-                        meta.damage = previousDamage
-                    }
+                    meta.damage = previousDamage
                 }
             }
 
@@ -77,13 +73,8 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
             container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
 
-            entity.loopArmor {
-                val meta = it.itemMeta;
-                if (meta is Damageable) {
-                    it.editMeta(Damageable::class.java) { editable ->
-                        editable.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = editable.damage
-                    }
-                }
+            entity.loopDamageableArmor { meta, _ ->
+                meta.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = meta.damage
             }
 
             entity.damage(toDeal, event.damageSource)
