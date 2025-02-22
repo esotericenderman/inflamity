@@ -12,7 +12,7 @@ import java.util.function.Consumer
 fun Entity.loopArmorItems(consumer: Consumer<ItemStack>) {
     if (this !is LivingEntity) return
 
-    equipment?.armorContents?.forEach { consumer.accept(it) }
+    equipment?.armorContents?.forEach { if (it != null) consumer.accept(it) }
 }
 
 fun Entity.loopArmorItemsIndexed(consumer: BiConsumer<ItemStack, Int>) {
