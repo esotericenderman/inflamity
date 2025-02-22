@@ -23,6 +23,7 @@ open class InflamityPlugin : JavaPlugin() {
             EntityContactListener(),
             BurningSlimeSplitListener(),
             FireProjectileListener(),
+            EntityCombustListener(),
 
             EntityBurnListener(this)
         )
