@@ -116,4 +116,30 @@ class EntityFireSpreadListenerTest : AbstractInflamityPluginTest() {
             assertNotEquals(Material.FIRE, startingBlock.type, "Lit entity should not spread fire while mid-air.")
         }
     }
+
+    @Test fun `fire is not spread if event is cancelled (event)`() {
+        for (damageType in fireDamageTypes) {
+            setUpEnvironment()
+
+            val damage = 1.0
+            entity.damage(damage)
+
+            val event = EntityDamageEvent(
+                entity,
+                damageType,
+                DamageSource.builder(DamageType.GENERIC).withDamageLocation(entity.location).build(),
+                damage
+            )
+
+            event.isCancelled = true
+
+            event.callEvent()
+
+            assertNotEquals(Material.FIRE, startingBlock.type, "Fire should not be spread if the event is cancelled.")
+
+            server.scheduler.performTicks(100L)
+
+            assertNotEquals(Material.FIRE, startingBlock.type, "Fire should not be spread if the event is cancelled.")
+        }
+    }
 }

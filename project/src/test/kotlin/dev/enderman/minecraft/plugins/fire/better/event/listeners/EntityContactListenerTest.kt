@@ -1,6 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
+import dev.enderman.minecraft.plugins.fire.better.entity.extinguish
 import dev.enderman.minecraft.plugins.fire.better.events.listeners.contactAttacks
 import org.bukkit.damage.DamageSource
 import org.bukkit.damage.DamageType
@@ -37,7 +38,7 @@ class EntityContactListenerTest : AbstractInflamityPluginTest() {
             setUpEnvironment()
 
             val cause = EntityDamageEvent.DamageCause.ENTITY_ATTACK
-            val source = DamageSource.builder(damageType).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
+            val source = DamageSource.builder(DamageType.GENERIC).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
 
             val event = EntityDamageByEntityEvent(player, creeper, cause, source, 1.0)
             event.callEvent()
@@ -47,7 +48,7 @@ class EntityContactListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `fire does not spread when attacker not on fire (event)`() {
-        player.fireTicks = 0
+        player.extinguish()
         val cause = EntityDamageEvent.DamageCause.ENTITY_ATTACK
         val source = DamageSource.builder(DamageType.PLAYER_ATTACK).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
 
@@ -58,7 +59,7 @@ class EntityContactListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `non-direct attacks do not cause fire spread`() {
-        player.fireTicks = 0
+        player.extinguish()
         val cause = EntityDamageEvent.DamageCause.CUSTOM
         val source = DamageSource.builder(DamageType.GENERIC).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
 
@@ -71,13 +72,12 @@ class EntityContactListenerTest : AbstractInflamityPluginTest() {
     @Test fun `attacking a lit entity spread the fire`() {
         for (damageType in contactAttacks) {
             setUpEnvironment()
-            player.fireTicks = 0
+            player.extinguish()
             creeper.fireTicks = 10_000
 
-            val cause = EntityDamageEvent.DamageCause.ENTITY_ATTACK
-            val source = DamageSource.builder(damageType).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
+            val source = DamageSource.builder(DamageType.GENERIC).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
 
-            val event = EntityDamageByEntityEvent(player, creeper, cause, source, 1.0)
+            val event = EntityDamageByEntityEvent(player, creeper, damageType, source, 1.0)
             event.callEvent()
 
             assertTrue(player.fireTicks > 0, "Player should be on fire after attacking a lit creeper.")
