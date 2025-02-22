@@ -35,6 +35,8 @@
 
 ### Additions
 
+- Make splash potions that explode in fire have their effect amplified.
+
 ### Changes
 
 - Make it so that you *can* put out fire with your hand if you are holding some items.
