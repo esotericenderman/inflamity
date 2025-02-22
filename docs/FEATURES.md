@@ -13,7 +13,6 @@ This file documents all of the features of this project.
 
 - Fire protection now protects even better against fire damage. Full fire protection makes you completely immune to fire.
 - Fire protection will sometimes prevent durability loss from fire, with full fire protection preventing all durability loss.
-- Fire protection will reduce even further the time that an entity is on fire, again scaling with the fire protection level.
 
 ## Flint and Steel
 
