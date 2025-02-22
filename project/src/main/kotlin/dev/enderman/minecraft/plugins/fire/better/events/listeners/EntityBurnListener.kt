@@ -2,6 +2,7 @@ package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionFactor
+import dev.enderman.minecraft.plugins.fire.better.entity.extinguish
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
 import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmor
@@ -19,7 +20,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
         val entity = event.entity
 
         if (event.isSuffocationDamage()) {
-            entity.fireTicks = 0
+            entity.extinguish()
             return
         }
 
@@ -41,7 +42,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
         if (factor == 1.0) {
             event.isCancelled = true
-            entity.fireTicks = 0
+            entity.extinguish()
             return
         }
 
