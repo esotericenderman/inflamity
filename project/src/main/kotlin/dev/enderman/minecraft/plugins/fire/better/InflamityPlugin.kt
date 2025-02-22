@@ -11,5 +11,6 @@ open class InflamityPlugin : JavaPlugin() {
         server.pluginManager.registerEvents(EntityFireSpreadListener(), this)
         server.pluginManager.registerEvents(EntityBurnListener(this), this)
         server.pluginManager.registerEvents(EntityContactListener(), this)
+        server.pluginManager.registerEvents(BurningSlimeSplitListener(), this)
     }
 }
