@@ -13,7 +13,6 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.persistence.PersistentDataType
-import kotlin.math.roundToInt
 import kotlin.random.Random
 
 class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
@@ -35,8 +34,6 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
             return
         }
 
-        val originalFire = entity.fireTicks
-
         entity.fireTicks = 10_000
 
         if (entity !is LivingEntity) return
@@ -52,9 +49,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
         if (factor == 0.0) return
 
         val final = event.finalDamage
-
-        val inverseFactor = 1 - factor
-        val toDeal = final * inverseFactor
+        val toDeal = final * (1 - factor)
 
         event.isCancelled = true
 
@@ -82,8 +77,6 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
             },
             1L
         )
-
-        entity.fireTicks = (originalFire * inverseFactor).roundToInt()
 
         entity.damage(toDeal, event.damageSource)
     }
