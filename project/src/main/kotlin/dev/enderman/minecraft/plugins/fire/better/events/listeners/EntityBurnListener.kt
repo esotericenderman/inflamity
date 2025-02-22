@@ -3,7 +3,6 @@ package dev.enderman.minecraft.plugins.fire.better.events.listeners
 import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionFactor
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
-import dev.enderman.minecraft.plugins.fire.better.events.fire.isDurabilityWastingFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
 import dev.enderman.minecraft.plugins.fire.better.utility.loopDamageableArmor
 import org.bukkit.entity.LivingEntity
@@ -35,20 +34,6 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
             container.remove(plugin.ignoreFireKey)
 
-            if (!event.isDurabilityWastingFireDamage()) return
-
-            entity.loopDamageableArmor { meta, item ->
-                val factor = item.getFireProtectionFactor()
-
-                if (Random.nextDouble() > factor) return@loopDamageableArmor
-
-                val itemContainer = meta.persistentDataContainer
-                val previousDamage = itemContainer[plugin.previousDamageKey, PersistentDataType.INTEGER]!!
-                itemContainer.remove(plugin.previousDamageKey)
-
-                meta.damage = previousDamage
-            }
-
             return
         }
 
@@ -73,9 +58,30 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
         container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
 
-        entity.loopDamageableArmor { meta, _ ->
+        entity.loopDamageableArmor { meta, item ->
+            println("Damage of ${item.type}: ${meta.damage}")
             meta.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = meta.damage
         }
+
+        plugin.server.scheduler.runTaskLater(
+            plugin,
+            { ->
+                entity.loopDamageableArmor { meta, item ->
+                    println("Damage of ${item.type}: ${meta.damage}")
+                    val itemFactor = item.getFireProtectionFactor()
+
+                    if (Random.nextDouble() > itemFactor) return@loopDamageableArmor
+
+                    val itemContainer = meta.persistentDataContainer
+                    val previousDamage = itemContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] ?: return@loopDamageableArmor
+
+                    itemContainer.remove(plugin.previousDamageKey)
+
+                    meta.damage = previousDamage
+                }
+            },
+            1L
+        )
 
         entity.damage(toDeal, event.damageSource)
     }
