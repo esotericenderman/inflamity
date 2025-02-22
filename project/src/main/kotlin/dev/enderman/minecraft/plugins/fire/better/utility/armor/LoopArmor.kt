@@ -47,11 +47,11 @@ fun Entity.loopDamageableArmorItemsIndexed(consumer: BiConsumer<ItemStack, Int>)
     loopDamageableArmorItems { consumer.accept(it, ++index) }
 }
 
-fun Entity.loopDamageableArmorMeta(consumer: Consumer<ItemMeta>) {
+fun Entity.loopDamageableArmorMeta(consumer: Consumer<Damageable>) {
     loopDamageableArmorItems { it.editMeta(Damageable::class.java) { meta -> consumer.accept(meta) } }
 }
 
-fun Entity.loopDamageableArmorMetaIndexed(consumer: BiConsumer<ItemMeta, Int>) {
+fun Entity.loopDamageableArmorMetaIndexed(consumer: BiConsumer<Damageable, Int>) {
     var index = -1
     loopDamageableArmorMeta { consumer.accept(it, ++index) }
 }
