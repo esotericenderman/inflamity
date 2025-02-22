@@ -17,3 +17,7 @@ This file documents all of the features of this project.
 ## Flint and Steel
 
 - Right-clicking entities with a flint and steel now sets them on fire.
+
+## Slimes
+
+- If a slime splits while burning, the resulting smaller slimes will also be on fire.

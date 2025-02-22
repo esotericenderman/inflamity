@@ -16,6 +16,12 @@
 
 ## Log
 
+### 0.3.0
+
+#### Additions
+
+- If a slime splits while burning, the resulting smaller slimes will also be on fire.
+
 ### 0.2.1
 
 #### Fixes
