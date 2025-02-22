@@ -21,3 +21,7 @@ This file documents all of the features of this project.
 ## Slimes
 
 - If a slime splits while burning, the resulting smaller slimes will also be on fire.
+
+## Non-Flammable Mobs
+
+- Some mobs, such as iron golems, are now immune to fire!

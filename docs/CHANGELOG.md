@@ -25,6 +25,7 @@
 #### Changes
 
 - Igniting entities will now anger them.
+- Iron golems are now immune to fire.
 
 ### 0.2.1
 
