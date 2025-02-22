@@ -23,6 +23,8 @@
 - If a slime splits while burning, the resulting smaller slimes will also be on fire.
 - Made creepers ignite as soon as they are on fire.
 - Projectiles will now carry the fire of their shooter.
+- Lit projectiles will now light blocks that they are shot at.
+- Lit projectiles will now light candles.
 
 #### Changes
 
