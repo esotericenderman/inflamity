@@ -16,6 +16,12 @@
 
 ## Log
 
+### 0.2.1
+
+#### Fixes
+
+- Flint and steels will now take durability damage when using them to ignite mobs.
+
 ### 0.2.0
 
 #### Changes
