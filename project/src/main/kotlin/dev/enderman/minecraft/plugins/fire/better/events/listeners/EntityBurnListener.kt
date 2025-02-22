@@ -25,13 +25,9 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
         if (!event.isFireDamage()) return
 
-        println("Entity ${entity.name} took damage from fire because of ${event.cause}.")
-
         val container = entity.persistentDataContainer
 
         if (container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] == true) {
-            println("Ignoring event as the damage was forced and artificial.")
-
             container.remove(plugin.ignoreFireKey)
 
             return
@@ -59,7 +55,6 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
         container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
 
         entity.loopDamageableArmor { meta, item ->
-            println("Damage of ${item.type}: ${meta.damage}")
             meta.persistentDataContainer[plugin.previousDamageKey, PersistentDataType.INTEGER] = meta.damage
         }
 
@@ -67,7 +62,6 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
             plugin,
             { ->
                 entity.loopDamageableArmor { meta, item ->
-                    println("Damage of ${item.type}: ${meta.damage}")
                     val itemFactor = item.getFireProtectionFactor()
 
                     if (Random.nextDouble() > itemFactor) return@loopDamageableArmor
