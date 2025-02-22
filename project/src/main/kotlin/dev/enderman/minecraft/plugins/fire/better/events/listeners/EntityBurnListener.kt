@@ -6,6 +6,7 @@ import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.g
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isDurabilityWastingFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
+import dev.enderman.minecraft.plugins.fire.better.utility.loopArmor
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
@@ -40,8 +41,8 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
             container.remove(plugin.ignoreFireKey)
 
             if (event.isDurabilityWastingFireDamage()) {
-                (entity as LivingEntity).equipment?.armorContents?.filterNotNull()?.forEach {
-                    if (it.itemMeta !is Damageable) return
+                entity.loopArmor {
+                    if (it.itemMeta !is Damageable) return@loopArmor
 
                     val factor = it.getEnchantmentLevel(Enchantment.FIRE_PROTECTION) / Enchantment.FIRE_PROTECTION.maxLevel.toDouble()
 
@@ -76,7 +77,7 @@ class EntityBurnListener(private val plugin: InflamityPlugin) : Listener {
 
             container[plugin.ignoreFireKey, PersistentDataType.BOOLEAN] = true
 
-            entity.equipment?.armorContents?.filterNotNull()?.forEach {
+            entity.loopArmor {
                 val meta = it.itemMeta;
                 if (meta is Damageable) {
                     it.editMeta(Damageable::class.java) { editable ->
