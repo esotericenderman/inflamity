@@ -4,7 +4,7 @@ import dev.enderman.minecraft.plugins.fire.better.InflamityPlugin
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionFactor
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
-import dev.enderman.minecraft.plugins.fire.better.utility.loopDamageableArmor
+import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmor
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
