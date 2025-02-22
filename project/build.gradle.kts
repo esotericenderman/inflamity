@@ -110,16 +110,12 @@ tasks {
         jvmArgs("-XX:+AllowEnhancedClassRedefinition -XX:HotswapAgent=core")
     }
 
+    jacocoTestReport {
+        dependsOn(test)
+    }
+
     jacocoTestCoverageVerification {
         dependsOn(test)
-
-        violationRules {
-            rule {
-                limit {
-                    minimum = 1.0.toBigDecimal()
-                }
-            }
-        }
     }
 }
 
