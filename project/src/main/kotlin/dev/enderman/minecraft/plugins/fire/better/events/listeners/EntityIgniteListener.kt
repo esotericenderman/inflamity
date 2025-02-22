@@ -4,6 +4,7 @@ import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import org.apache.commons.lang3.BooleanUtils
 import org.bukkit.Material
 import org.bukkit.Sound
+import org.bukkit.entity.Mob
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerInteractAtEntityEvent
@@ -50,5 +51,6 @@ class EntityIgniteListener : Listener {
         }
 
         entity.fireTicks = FIRE_DURATION
+        if (entity is Mob) entity.target = player
     }
 }
