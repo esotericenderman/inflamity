@@ -35,7 +35,9 @@ class FireProjectileListener : Listener {
         val name = type.name
 
         if (name.endsWith("_CANDLE")) {
-            (data as Candle).isLit = true
+            try {
+                (data as Candle).isLit = true
+            } catch (ignored: ClassCastException) {}
         }
 
         hitBlock.blockData = data
