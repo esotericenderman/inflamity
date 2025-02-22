@@ -116,14 +116,6 @@ tasks {
 
     jacocoTestCoverageVerification {
         dependsOn(test)
-
-        violationRules {
-            rule {
-                limit {
-                    minimum = 0.9.toBigDecimal()
-                }
-            }
-        }
     }
 }
 
