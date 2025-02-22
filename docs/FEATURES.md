@@ -8,6 +8,7 @@ This file documents all of the features of this project.
 - Entities on fire do not extinguish naturally.
 - Entities that are on fire will spread fire to blocks around them.
 - Hitting a mob that is on fire will spread the fire to you, and vice versa.
+- Some entities, such as snowballs, will instantly be removed when entering fire.
 
 ## Fire Protection
 

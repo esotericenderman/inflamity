@@ -30,6 +30,7 @@
 
 - Igniting entities will now anger them.
 - Iron golems are now immune to fire.
+- Some entities, such as snowballs, will instantly be removed when entering fire.
 
 ### 0.2.1
 
