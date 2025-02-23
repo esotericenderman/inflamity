@@ -6,8 +6,12 @@ import org.bukkit.block.Block
 fun Block.supportsFire(): Boolean {
     val neighbours = getNeighbours()
 
-    val atLeastOneFlammable = neighbours.any { it.type.isFlammable || it.type.isFlammable || it.type.isBurnable }
-    val isNotSolid = !type.isCollidable
+    val oneNeighbourFlammable = neighbours.any { it.canBurn() }
+    val canBeReplacedWithFire = !type.isCollidable && canBurn()
 
-    return atLeastOneFlammable && isNotSolid
+    return oneNeighbourFlammable && canBeReplacedWithFire
+}
+
+fun Block.canBurn(): Boolean {
+    return type.isFlammable || type.isFuel || type.isBurnable
 }
