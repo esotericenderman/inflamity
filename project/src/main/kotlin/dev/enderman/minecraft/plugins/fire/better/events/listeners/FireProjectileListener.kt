@@ -2,6 +2,7 @@ package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import dev.enderman.minecraft.plugins.fire.better.entity.isOnFire
+import dev.enderman.minecraft.plugins.fire.better.fire.attemptFireSpread
 import org.bukkit.Material
 import org.bukkit.block.data.type.Candle
 import org.bukkit.entity.Entity
@@ -42,9 +43,8 @@ class FireProjectileListener : Listener {
 
         hitBlock.blockData = data
 
-        val projectileBlock = projectile.location.block
-        if (projectileBlock.type != Material.AIR) return
-
-        if (hitBlock.type.isFlammable || hitBlock.type.isFuel) projectileBlock.type = Material.FIRE
+        projectile.attemptFireSpread()
+        projectile.location.block.attemptFireSpread()
+        hitBlock.attemptFireSpread()
     }
 }

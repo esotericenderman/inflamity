@@ -24,11 +24,11 @@ fun Block.canBurn(): Boolean {
 }
 
 fun Entity.attemptFireSpread() {
-    loopBoundingBox {
-        block ->
+    loopBoundingBox(Block::attemptFireSpread)
+}
 
-        if (block.supportsFire()) {
-            block.type = Material.FIRE
-        }
+fun Block.attemptFireSpread() {
+    if (supportsFire()) {
+        type = Material.FIRE
     }
 }
