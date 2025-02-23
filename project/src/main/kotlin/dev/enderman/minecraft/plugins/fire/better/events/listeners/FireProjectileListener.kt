@@ -19,6 +19,7 @@ class FireProjectileListener : Listener {
 
         if (shooter !is Entity) return
         if (!shooter.isOnFire()) return
+        if (fireImmuneEntities.contains(projectile.type)) return
 
         projectile.fireTicks = FIRE_DURATION
     }
