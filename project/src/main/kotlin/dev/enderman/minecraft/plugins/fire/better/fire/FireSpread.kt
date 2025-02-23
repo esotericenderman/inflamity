@@ -12,10 +12,15 @@ val infiniteBurnBlocks = listOfNotNull(
     Material.CRIMSON_NYLIUM
 )
 
+val liquidBlocks = listOfNotNull(
+    Material.LAVA,
+    Material.WATER
+)
+
 fun Block.supportsFire(): Boolean {
     val neighbours = getNeighbours()
 
-    val canBeReplaced = !type.isCollidable
+    val canBeReplaced = !type.isCollidable && !liquidBlocks.contains(type)
 
     if (!canBeReplaced) return false
 
