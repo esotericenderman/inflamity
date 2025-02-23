@@ -33,6 +33,7 @@
 - Some entities, such as snowballs, will instantly be removed when entering fire.
 - Eggs, ender pearls, and splash potions will no longer have visual fire.
 - Snow golems will no longer burn when outside fire.
+- Fire does not spread anywhere, unless it makes sense for it to be there (some sort of flammable block nearby).
 
 ### 0.2.1
 
