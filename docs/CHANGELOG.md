@@ -31,7 +31,7 @@
 - Igniting entities will now anger them.
 - Iron golems are now immune to fire.
 - Some entities, such as snowballs, will instantly be removed when entering fire.
-- Eggs and ender pearls will no longer have visual fire.
+- Eggs, ender pearls, and splash potions will no longer have visual fire.
 - Snow golems will no longer burn when outside fire.
 
 ### 0.2.1
