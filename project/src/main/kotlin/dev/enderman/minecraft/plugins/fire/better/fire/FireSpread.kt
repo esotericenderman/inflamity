@@ -9,10 +9,14 @@ import org.bukkit.entity.Entity
 fun Block.supportsFire(): Boolean {
     val neighbours = getNeighbours()
 
-    val oneNeighbourFlammable = neighbours.any { it.canBurn() }
-    val canBeReplacedWithFire = !type.isCollidable && canBurn()
+    val canBeReplaced = !type.isCollidable
 
-    return oneNeighbourFlammable && canBeReplacedWithFire
+    if (!canBeReplaced) return false
+
+    val canBurn = canBurn()
+    val oneNeighbourFlammable = neighbours.any { it.canBurn() }
+
+    return canBurn || oneNeighbourFlammable
 }
 
 fun Block.canBurn(): Boolean {
@@ -21,6 +25,10 @@ fun Block.canBurn(): Boolean {
 
 fun Entity.attemptFireSpread() {
     loopBoundingBox {
-        block -> if (block.supportsFire()) block.type = Material.FIRE
+        block ->
+
+        if (block.supportsFire()) {
+            block.type = Material.FIRE
+        }
     }
 }
