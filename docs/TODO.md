@@ -3,10 +3,6 @@
 ## Structure
 
 ```markdown
-# Ideas
-
-## Structure
-
 ## Version
 
 ### To-Do
