@@ -6,6 +6,12 @@ import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Entity
 
+val infiniteBurnBlocks = listOfNotNull(
+    Material.NETHERRACK,
+    Material.WARPED_NYLIUM,
+    Material.CRIMSON_NYLIUM
+)
+
 fun Block.supportsFire(): Boolean {
     val neighbours = getNeighbours()
 
@@ -20,7 +26,7 @@ fun Block.supportsFire(): Boolean {
 }
 
 fun Block.canBurn(): Boolean {
-    return type.isFlammable || type.isFuel || type.isBurnable
+    return type.isFlammable || type.isFuel || type.isBurnable || infiniteBurnBlocks.contains(type)
 }
 
 fun Entity.attemptFireSpread() {
