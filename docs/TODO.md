@@ -69,3 +69,4 @@
 #### Changes
 
 - Improve fire spreading from entities and projectiles by making block checks more lenient.
+- Prevent fire from even existing on some blocks.
