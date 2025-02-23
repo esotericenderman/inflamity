@@ -1,6 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
+import dev.enderman.minecraft.plugins.fire.better.fire.supportsFire
 import org.bukkit.Material
 import org.bukkit.block.BlockFace
 import org.bukkit.event.EventHandler
@@ -15,8 +16,9 @@ class EntityFireSpreadListener : Listener {
         if (event.isCancelled) return
 
         val block = event.entity.location.block
-        val blockBeneath = block.getRelative(BlockFace.DOWN)
 
-        if (block.type == Material.AIR && blockBeneath.type != Material.AIR) block.type = Material.FIRE
+        if (!block.supportsFire()) return
+
+        block.type = Material.FIRE
     }
 }
