@@ -1,52 +1,75 @@
 # Ideas
 
-## To-Do
+## Structure
 
-### Additions
+```markdown
+# Ideas
 
-- Entities should be set on fire when interacted with a fire-setting item.
-- Blocks should be set on fire when interacted with a fire-setting item.
-- Campfires should be set on fire when interacted with a fire-setting item.
-- Furnaces should be fueled when interacted with a fire-setting item.
+## Structure
+
+## Version
+
+### To-Do
+
+#### Additions
+
+#### Changes
+
+#### Removals
+
+### Considered
+
+#### Additions
+
+#### Changes
+
+#### Removals
+
+## Won't Implement
+
+#### Additions
+
+#### Changes
+
+#### Removals
+```
+
+## Future
+
+### To-Do
+
+#### Additions
 
 - Add fire aspect swords to the list of fire-setting items.
 - Add fire charges to the list of fire-setting items.
 - Add flame bows to the list of fire-settings items.
-
 - Allow mobs to spread fire to each other by physical contact.
-- Allow mobs to spread fire to each other by hitting each other.
-
 - If an entity hits another entity wearing thorns armour with a fire-setting item, both entities are set on fire.
-
 - If a player is on fire, "flammable items" in their inventory will burn up.
 
-### Changes
+#### Changes
 
-- Make sure entities acknowledge when a player sets them on fire.
+- Make sure entities acknowledge when a player sets them on fire. (but smarter) - also make iron golems attack players who burn down the village.
 - Make lava a LOT stronger.
 - If a horse is set on fire, then so should the rider.
-- Stop fire from even existing on non-flammable blocks.
 - Prevent fire spread through hitting if the item that you hit with was non-flammable (such as a diamond sword).
 - Make it so that some items are immune to burning in fire and lava.
 
-### Removals
+### Considered
 
-## Considered
-
-### Additions
+#### Additions
 
 - Make splash potions that explode in fire have their effect amplified.
+- Furnaces should be fueled when interacted with a fire-setting item.
 
-### Changes
+#### Changes
 
 - Make it so that you *can* put out fire with your hand if you are holding some items.
 
-### Removals
+## 0.3.0
 
-## Won't Implement
+### To-Do
 
-### Additions
+#### Changes
 
-### Changes
-
-### Removals
+- Improve fire spreading from entities and projectiles by making block checks more lenient.
