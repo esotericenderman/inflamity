@@ -61,11 +61,3 @@
 #### Changes
 
 - Make it so that you *can* put out fire with your hand if you are holding some items.
-
-## 0.3.0
-
-### To-Do
-
-#### Changes
-
-- Prevent fire from even existing on some blocks.
