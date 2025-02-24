@@ -16,6 +16,12 @@
 
 ## Log
 
+### 0.4.0
+
+#### Changes
+
+- Allowed fire to spread from a passenger to its vehicle and vice versa.
+
 ### 0.3.1
 
 #### Fixes
