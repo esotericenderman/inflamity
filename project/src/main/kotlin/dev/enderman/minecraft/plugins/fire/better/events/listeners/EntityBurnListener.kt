@@ -4,11 +4,8 @@ import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionFactor
 import dev.enderman.minecraft.plugins.fire.better.entity.extinguish
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
-import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
 import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmor
 import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmorMeta
-import dev.enderman.minecraft.plugins.fire.better.utility.entity.passenger.loopPassengers
-import dev.enderman.minecraft.plugins.fire.better.utility.entity.passenger.loopVehicle
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Creeper
 import org.bukkit.entity.Entity
@@ -61,8 +58,8 @@ class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
 
         entity.fireTicks = FIRE_DURATION
 
-        entity.loopPassengers { entity.fireTicks = FIRE_DURATION }
-        entity.loopVehicle { entity.fireTicks = FIRE_DURATION }
+        entity.passengers.forEach { it.fireTicks = FIRE_DURATION }
+        entity.vehicle?.fireTicks = FIRE_DURATION
 
         if (entity !is LivingEntity) return
 
