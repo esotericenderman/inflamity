@@ -5,6 +5,7 @@ import dev.enderman.minecraft.plugins.fire.better.gameModesWithConsequences
 import org.apache.commons.lang3.BooleanUtils
 import org.bukkit.Material
 import org.bukkit.Sound
+import org.bukkit.entity.EntityType
 import org.bukkit.entity.Mob
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -12,10 +13,21 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.meta.Damageable
 
+/**
+ * Entities that can't be ignited with a flint and steel, usually because they have some sort of other behaviour when right-clicking them with a flint and steel.
+ */
+val nonIgnitableEntities = listOfNotNull(
+    EntityType.CREEPER
+)
+
 class EntityIgniteListener : Listener {
 
     @EventHandler
     fun onEntityIgnite(event: PlayerInteractAtEntityEvent) {
+        val entity = event.rightClicked
+
+        if (nonIgnitableEntities.contains(entity.type)) return
+
         if (event.hand != EquipmentSlot.HAND) return
 
         val player = event.player
@@ -31,8 +43,6 @@ class EntityIgniteListener : Listener {
 
         val oneHandHolding = BooleanUtils.xor(mainHandHolding, offHandHolding)
         if (!oneHandHolding) return
-
-        val entity = event.rightClicked
 
         entity.world.playSound(entity.location, Sound.ITEM_FLINTANDSTEEL_USE, 1.0F, 1.0F)
 
