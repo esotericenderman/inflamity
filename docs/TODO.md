@@ -62,9 +62,3 @@
 #### Changes
 
 - Make it so that you *can* put out fire with your hand if you are holding some items.
-
-## 0.4.0
-
-### Changes
-
-- If a horse is set on fire, then so should the rider.
