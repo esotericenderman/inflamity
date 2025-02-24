@@ -275,9 +275,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
                 damage
             )
 
-            assertDoesNotThrow("Wearing weird items should not lead to errors.") {
-                event.callEvent()
-            }
+            event.callEvent()
 
             assertFalse(event.isCancelled, "Event should not be cancelled when wearing weird items.")
         }
