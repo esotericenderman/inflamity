@@ -16,6 +16,13 @@
 
 ## Log
 
+### 0.3.1
+
+#### Fixes
+
+- Fixed some "extremelly flammable" items still being able to appear as if on fire.
+- Fixed creepers who are right-clicked with a flint and steel being aflame as well as ignited at the same time.
+
 ### 0.3.0
 
 #### Additions
