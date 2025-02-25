@@ -49,7 +49,6 @@
 
 - Make sure entities acknowledge when a player sets them on fire. (but smarter) - also make iron golems attack players who burn down the village.
 - Make lava a LOT stronger.
-- Prevent fire spread through hitting if the item that you hit with was non-flammable (such as a diamond sword).
 - Make it so that some items are immune to burning in fire and lava.
 
 ### Considered
