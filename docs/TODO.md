@@ -72,3 +72,4 @@
 #### Changes
 
 - Make it so that placing a block to remove fire will set the player on fire if the block is flammable.
+- Make fireballs set fire to mobs they hit (not currently true?).
