@@ -72,4 +72,3 @@
 #### Changes
 
 - Make it so that placing a block to remove fire will set the player on fire if the block is flammable.
-- Make lava a LOT stronger.
