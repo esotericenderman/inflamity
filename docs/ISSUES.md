@@ -4,6 +4,8 @@ This file is used to keep track of issues with the project.
 
 ## Will Fix
 
+- Placed fire appears as if it's on a block when it appears on leaves and other surfaces.
+
 ## Won't Fix
 
 ## Fixed
