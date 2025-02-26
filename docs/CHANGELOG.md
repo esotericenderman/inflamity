@@ -21,6 +21,7 @@
 #### Changes
 
 - Prevent fire from spreading by hitting mobs if you are holding a non-flammable item.
+- Made lava a lot stronger.
 
 ### 0.4.0
 
