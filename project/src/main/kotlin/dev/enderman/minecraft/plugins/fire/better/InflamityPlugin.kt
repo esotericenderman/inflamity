@@ -27,6 +27,7 @@ open class InflamityPlugin : JavaPlugin() {
             SuffocationListener(),
             FirePlaceListener(),
             LavaDamageListener(),
+            ThrowableFireballListener(),
 
             EntityBurnListener(this)
         )
