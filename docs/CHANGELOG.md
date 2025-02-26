@@ -16,6 +16,12 @@
 
 ## Log
 
+### 0.5.0
+
+#### Changes
+
+- Prevent fire from spreading by hitting mobs if you are holding a non-flammable item.
+
 ### 0.4.0
 
 #### Changes
