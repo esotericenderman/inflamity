@@ -54,6 +54,7 @@
 
 - Make splash potions that explode in fire have their effect amplified.
 - Furnaces should be fueled when interacted with a fire-setting item.
+- If a creeper is on fire when it explodes, the explosion sets fire everywhere.
 
 #### Changes
 
