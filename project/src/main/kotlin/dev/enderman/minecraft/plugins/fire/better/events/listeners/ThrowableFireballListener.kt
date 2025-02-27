@@ -26,5 +26,6 @@ class ThrowableFireballListener : Listener {
         if (!gameModesWithConsequences.contains(player.gameMode)) return
 
         heldItem.amount--
+        player.swingHand(hand)
     }
 }
