@@ -5,6 +5,10 @@ This file is used to keep track of issues with the project.
 ## Will Fix
 
 - Placed fire appears as if it's on a block when it appears on leaves and other surfaces.
+- Fire charges can be thrown with both left and right click.
+- Fire charges can be thrown and placed on the ground at the same time.
+- Fire charges place fire where fire shouldn't exist in the first place.
+- There is no animation when throwing fire charges.
 
 ## Won't Fix
 
