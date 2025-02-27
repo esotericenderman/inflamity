@@ -47,6 +47,7 @@
 - Make sure entities acknowledge when a player sets them on fire. (but smarter) - also make iron golems attack players who burn down the village.
 - Make it so that some items are immune to burning in fire and lava.
 - If an entity hits another entity wearing thorns armour with a fire-setting item, both entities are set on fire.
+- Make fire charges and fireballs "go out" when in rain and especially when in water.
 
 ### Considered
 
