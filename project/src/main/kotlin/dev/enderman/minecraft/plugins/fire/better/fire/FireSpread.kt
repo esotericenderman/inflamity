@@ -18,11 +18,10 @@ val liquidBlocks = listOfNotNull(
 )
 
 fun Block.supportsFire(): Boolean {
-    val neighbours = getNeighbours()
-
     val canBeReplaced = !type.isCollidable && !liquidBlocks.contains(type)
-
     if (!canBeReplaced) return false
+
+    val neighbours = getNeighbours()
 
     val canBurn = canBurn()
     val oneNeighbourFlammable = neighbours.any { it.canBurn() }
