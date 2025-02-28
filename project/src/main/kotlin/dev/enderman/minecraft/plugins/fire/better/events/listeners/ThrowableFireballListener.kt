@@ -12,6 +12,9 @@ class ThrowableFireballListener : Listener {
 
     @EventHandler
     private fun onFireballThrow(event: PlayerInteractEvent) {
+        val block = event.clickedBlock
+        if (block != null) return
+
         val heldItem = event.item
         val type = heldItem?.type
 
