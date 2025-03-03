@@ -30,6 +30,7 @@ open class InflamityPlugin : JavaPlugin() {
             ThrowableFireballListener(),
             FlammableBlockPlaceListener(),
             FireChargeHitListener(),
+            FlammableItemDestroyListener(),
 
             EntityBurnListener(this)
         )
