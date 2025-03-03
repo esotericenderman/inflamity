@@ -15,6 +15,8 @@ class ThrowableFireballListener : Listener {
         val block = event.clickedBlock
         if (block != null) return
 
+        if (!event.action.isRightClick) return
+
         val heldItem = event.item
         val type = heldItem?.type
 
