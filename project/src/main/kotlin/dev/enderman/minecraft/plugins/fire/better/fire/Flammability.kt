@@ -37,6 +37,13 @@ fun Material.canBurn(): Boolean {
     return canBurnAway() || infiniteBurnBlocks.contains(this)
 }
 
+/**
+ * Returns whether this material can burn infinitely, but does not get destroyed by the fire.
+ */
+fun Material.burnsInfinitely(): Boolean {
+    return infiniteBurnBlocks.contains(this)
+}
+
 fun Block.supportsFire(): Boolean {
     val canBeReplaced = !type.isCollidable && !liquidBlocks.contains(type)
     if (!canBeReplaced) return false
