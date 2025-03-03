@@ -45,6 +45,9 @@ fun Material.burnsInfinitely(): Boolean {
     return infiniteBurnBlocks.contains(this)
 }
 
+/**
+ * Returns whether this block can be set on fire, but won't necessarily be destroyed by fire.
+ */
 fun Block.canBurn(): Boolean {
     return type.canBurn()
 }
