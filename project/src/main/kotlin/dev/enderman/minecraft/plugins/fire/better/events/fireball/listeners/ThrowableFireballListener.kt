@@ -1,4 +1,4 @@
-package dev.enderman.minecraft.plugins.fire.better.events.listeners
+package dev.enderman.minecraft.plugins.fire.better.events.fireball.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.gameModesWithConsequences
 import org.bukkit.Material
