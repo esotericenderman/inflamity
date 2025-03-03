@@ -7,7 +7,7 @@ import org.bukkit.block.Block
 import org.bukkit.entity.Entity
 
 /**
- * These materials burn infinitely, but do not burn away. Fire stays on them indefinitely and they cannot be destroyed by it.
+ * These materials burn infinitely, but do not burn away. Fire stays on them indefinitely, and they cannot be destroyed by it.
  */
 val infiniteBurnBlocks = listOfNotNull(
     Material.NETHERRACK,
