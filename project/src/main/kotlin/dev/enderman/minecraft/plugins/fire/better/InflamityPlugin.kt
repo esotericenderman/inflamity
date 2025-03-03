@@ -3,6 +3,7 @@ package dev.enderman.minecraft.plugins.fire.better
 import dev.enderman.minecraft.plugins.fire.better.events.fireball.listeners.ThrowableFireballListener
 import dev.enderman.minecraft.plugins.fire.better.events.lava.listeners.LavaDamageListener
 import dev.enderman.minecraft.plugins.fire.better.events.listeners.*
+import dev.enderman.minecraft.plugins.fire.better.events.suffocation.listeners.SuffocationListener
 import org.bukkit.GameMode
 import org.bukkit.plugin.java.JavaPlugin
 
