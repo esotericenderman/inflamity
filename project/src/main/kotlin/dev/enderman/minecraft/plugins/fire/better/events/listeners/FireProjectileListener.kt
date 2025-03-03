@@ -35,6 +35,11 @@ class FireProjectileListener : Listener {
         val projectile = event.entity
         if (!projectile.isOnFire()) return
 
+        val hitEntity = event.hitEntity
+        if (hitEntity != null) {
+            hitEntity.fireTicks = FIRE_DURATION
+        }
+
         val hitBlock = event.hitBlock ?: return
 
         val data = hitBlock.blockData
