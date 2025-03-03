@@ -45,6 +45,10 @@ fun Material.burnsInfinitely(): Boolean {
     return infiniteBurnBlocks.contains(this)
 }
 
+fun Block.canBurn(): Boolean {
+    return type.canBurn()
+}
+
 fun Block.supportsFire(): Boolean {
     val canBeReplaced = !type.isCollidable && !liquidBlocks.contains(type)
     if (!canBeReplaced) return false
@@ -55,10 +59,6 @@ fun Block.supportsFire(): Boolean {
     val oneNeighbourFlammable = neighbours.any { it.canBurn() }
 
     return canBurn || oneNeighbourFlammable
-}
-
-fun Block.canBurn(): Boolean {
-    return type.canBurn()
 }
 
 fun Entity.attemptFireSpread() {
