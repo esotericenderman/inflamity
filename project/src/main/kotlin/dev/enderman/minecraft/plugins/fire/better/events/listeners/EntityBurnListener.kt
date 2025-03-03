@@ -4,8 +4,8 @@ import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionFactor
 import dev.enderman.minecraft.plugins.fire.better.entity.fire.extinguish
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
-import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmor
-import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopDamageableArmorMeta
+import dev.enderman.minecraft.plugins.fire.better.armor.loopDamageableArmor
+import dev.enderman.minecraft.plugins.fire.better.armor.loopDamageableArmorMeta
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Creeper
 import org.bukkit.entity.Entity

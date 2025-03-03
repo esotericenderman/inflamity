@@ -1,4 +1,4 @@
-package dev.enderman.minecraft.plugins.fire.better.utility.armor
+package dev.enderman.minecraft.plugins.fire.better.armor
 
 import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity

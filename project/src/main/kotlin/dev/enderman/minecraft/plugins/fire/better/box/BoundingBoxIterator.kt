@@ -1,10 +1,8 @@
-package dev.enderman.minecraft.plugins.fire.better.utility.box
+package dev.enderman.minecraft.plugins.fire.better.box
 
 import org.bukkit.Location
 import org.bukkit.block.Block
 import org.bukkit.entity.Entity
-import kotlin.math.ceil
-import kotlin.math.floor
 
 fun Entity.loopBoundingBox(action: (Block) -> Unit) {
     val box = boundingBox

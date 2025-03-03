@@ -3,7 +3,7 @@ package dev.enderman.minecraft.plugins.fire.better.events.listeners
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.fire.canBurnAway
 import dev.enderman.minecraft.plugins.fire.better.gameModesWithConsequences
-import dev.enderman.minecraft.plugins.fire.better.utility.armor.loopEquipmentItems
+import dev.enderman.minecraft.plugins.fire.better.armor.loopEquipmentItems
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler

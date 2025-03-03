@@ -1,4 +1,4 @@
-package dev.enderman.minecraft.plugins.fire.better.utility.block
+package dev.enderman.minecraft.plugins.fire.better.blocks
 
 import org.bukkit.block.Block
 import org.bukkit.block.BlockFace

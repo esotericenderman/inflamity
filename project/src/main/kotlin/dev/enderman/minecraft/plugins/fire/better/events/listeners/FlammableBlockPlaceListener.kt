@@ -3,7 +3,7 @@ package dev.enderman.minecraft.plugins.fire.better.events.listeners
 import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import dev.enderman.minecraft.plugins.fire.better.fire.attemptFireSpread
 import dev.enderman.minecraft.plugins.fire.better.gameModesWithConsequences
-import dev.enderman.minecraft.plugins.fire.better.utility.block.directions
+import dev.enderman.minecraft.plugins.fire.better.blocks.directions
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener

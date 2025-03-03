@@ -1,8 +1,8 @@
 package dev.enderman.minecraft.plugins.fire.better.fire
 
 import dev.enderman.minecraft.plugins.fire.better.blocks.liquidBlocks
-import dev.enderman.minecraft.plugins.fire.better.utility.block.getNeighbours
-import dev.enderman.minecraft.plugins.fire.better.utility.box.loopBoundingBox
+import dev.enderman.minecraft.plugins.fire.better.blocks.getNeighbours
+import dev.enderman.minecraft.plugins.fire.better.box.loopBoundingBox
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Entity
