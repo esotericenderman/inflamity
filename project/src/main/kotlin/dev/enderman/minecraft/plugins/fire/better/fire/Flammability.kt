@@ -24,14 +24,15 @@ val liquidBlocks = listOfNotNull(
 )
 
 /**
- * Returns whether this block should be able to disappear if it is set on fire.
+ * Returns whether this material is flammable (can burn) *and* that fire destroys it.
  */
 fun Material.canBurnAway(): Boolean {
     return isFlammable || isFuel || isBurnable
 }
 
 /**
- * Returns whether this material can support fire.
+ * Returns whether this material can be set on fire, but won't necessarily be destroyed by fire.
+ * @see canBurnAway
  */
 fun Material.canBurn(): Boolean {
     return canBurnAway() || infiniteBurnBlocks.contains(this)
