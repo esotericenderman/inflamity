@@ -5,9 +5,7 @@ This file is used to keep track of issues with the project.
 ## Will Fix
 
 - Placed fire appears as if it's on a block when it appears on leaves and other surfaces.
-- There is no animation when throwing fire charges.
 - Fire charges are consumed even when no fire starts, but flint and steels don't take durability.
-- Flint and steels can be used when the other hand is NOT empty.
 
 ## Won't Fix
 
@@ -19,3 +17,5 @@ This file is used to keep track of issues with the project.
 - Fire charges can be thrown and placed on the ground at the same time.
 - Fire charges are thrown double.
 - Fire charges can be thrown with both left and right click.
+- Flint and steels can be used when the other hand is NOT empty.
+- There is no animation when throwing fire charges.
