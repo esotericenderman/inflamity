@@ -32,7 +32,7 @@ fun Material.canBurnAway(): Boolean {
 
 /**
  * Returns whether this material can be set on fire, but won't necessarily be destroyed by fire.
- * @see canBurnAway
+ * @see Material.canBurnAway
  */
 fun Material.canBurn(): Boolean {
     return canBurnAway() || infiniteBurnBlocks.contains(this)
