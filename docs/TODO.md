@@ -72,7 +72,3 @@
 
 - Throwable fireballs.
 - If a player is on fire, "flammable items" in their inventory will burn up.
-
-#### Changes
-
-- Make it so that placing a block to remove fire will set the player on fire if the block is flammable.
