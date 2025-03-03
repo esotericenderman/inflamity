@@ -28,9 +28,10 @@ class ThrowableFireballListener : Listener {
         val player = event.player
         player.launchProjectile(SmallFireball::class.java)
 
+        player.swingHand(EquipmentSlot.HAND)
+
         if (!gameModesWithConsequences.contains(player.gameMode)) return
 
         heldItem.amount--
-        player.swingHand(EquipmentSlot.HAND)
     }
 }
