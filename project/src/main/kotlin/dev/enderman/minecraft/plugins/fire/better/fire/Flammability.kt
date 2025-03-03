@@ -1,5 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.fire
 
+import dev.enderman.minecraft.plugins.fire.better.blocks.liquidBlocks
 import dev.enderman.minecraft.plugins.fire.better.utility.block.getNeighbours
 import dev.enderman.minecraft.plugins.fire.better.utility.box.loopBoundingBox
 import org.bukkit.Material
@@ -13,14 +14,6 @@ val infiniteBurnBlocks = listOfNotNull(
     Material.NETHERRACK,
     Material.WARPED_NYLIUM,
     Material.CRIMSON_NYLIUM
-)
-
-/**
- * These materials represent liquid blocks.
- */
-val liquidBlocks = listOfNotNull(
-    Material.LAVA,
-    Material.WATER
 )
 
 /**
