@@ -46,7 +46,15 @@ fun Material.burnsInfinitely(): Boolean {
 }
 
 /**
+ * Returns whether this block is flammable (can burn) *and* that fire destroys it.
+ */
+fun Block.canBurnAway(): Boolean {
+    return type.canBurnAway()
+}
+
+/**
  * Returns whether this block can be set on fire, but won't necessarily be destroyed by fire.
+ * @see Block.canBurnAway
  */
 fun Block.canBurn(): Boolean {
     return type.canBurn()
