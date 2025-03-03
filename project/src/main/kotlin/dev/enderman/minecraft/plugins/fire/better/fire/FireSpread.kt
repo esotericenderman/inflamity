@@ -6,12 +6,18 @@ import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Entity
 
+/**
+ * These materials burn infinitely, but do not burn away. Fire stays on them indefinitely and they cannot be destroyed by it.
+ */
 val infiniteBurnBlocks = listOfNotNull(
     Material.NETHERRACK,
     Material.WARPED_NYLIUM,
     Material.CRIMSON_NYLIUM
 )
 
+/**
+ * These materials represent liquid blocks.
+ */
 val liquidBlocks = listOfNotNull(
     Material.LAVA,
     Material.WATER
