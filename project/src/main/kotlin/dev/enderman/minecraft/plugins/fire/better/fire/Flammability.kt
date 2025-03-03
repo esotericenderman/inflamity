@@ -23,6 +23,20 @@ val liquidBlocks = listOfNotNull(
     Material.WATER
 )
 
+/**
+ * Returns whether this block should be able to disappear if it is set on fire.
+ */
+fun Material.canBurnAway(): Boolean {
+    return isFlammable || isFuel || isBurnable
+}
+
+/**
+ * Returns whether this material can support fire.
+ */
+fun Material.canBurn(): Boolean {
+    return canBurnAway() || infiniteBurnBlocks.contains(this)
+}
+
 fun Block.supportsFire(): Boolean {
     val canBeReplaced = !type.isCollidable && !liquidBlocks.contains(type)
     if (!canBeReplaced) return false
@@ -37,20 +51,6 @@ fun Block.supportsFire(): Boolean {
 
 fun Block.canBurn(): Boolean {
     return type.canBurn()
-}
-
-/**
- * Returns whether this block should be able to disappear if it is set on fire.
- */
-fun Material.canBurnAway(): Boolean {
-    return isFlammable || isFuel || isBurnable
-}
-
-/**
- * Returns whether this material can support fire.
- */
-fun Material.canBurn(): Boolean {
-    return canBurnAway() || infiniteBurnBlocks.contains(this)
 }
 
 fun Entity.attemptFireSpread() {
