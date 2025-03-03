@@ -39,6 +39,13 @@ fun Material.burnsInfinitely(): Boolean {
 }
 
 /**
+ * Returns whether this material is weak enough for fire to destroy its block form.
+ */
+fun Material.fireCanReplace(): Boolean {
+    return !isCollidable && !liquidBlocks.contains(this)
+}
+
+/**
  * Returns whether this block is flammable (can burn) *and* that fire destroys it.
  */
 fun Block.canBurnAway(): Boolean {
@@ -60,9 +67,15 @@ fun Block.burnsInfinitely(): Boolean {
     return type.burnsInfinitely()
 }
 
+/**
+ * Returns whether this material is weak enough for fire to destroy its block form.
+ */
+fun Block.fireCanReplace(): Boolean {
+    return type.fireCanReplace()
+}
+
 fun Block.supportsFire(): Boolean {
-    val canBeReplaced = !type.isCollidable && !liquidBlocks.contains(type)
-    if (!canBeReplaced) return false
+    if (!fireCanReplace()) return false
 
     val neighbours = getNeighbours()
 
