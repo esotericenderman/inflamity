@@ -79,12 +79,12 @@ fun Block.supportsFire(): Boolean {
     return canBurn || oneNeighbourFlammable
 }
 
-fun Entity.attemptFireSpread() {
-    loopBoundingBox(Block::attemptFireSpread)
-}
-
 fun Block.attemptFireSpread() {
     if (supportsFire()) {
         type = Material.FIRE
     }
+}
+
+fun Entity.attemptFireSpread() {
+    loopBoundingBox(Block::attemptFireSpread)
 }
