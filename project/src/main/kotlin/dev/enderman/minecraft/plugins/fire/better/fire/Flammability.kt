@@ -60,6 +60,13 @@ fun Block.canBurn(): Boolean {
     return type.canBurn()
 }
 
+/**
+ * Returns whether this block can burn infinitely, but does not get destroyed by the fire.
+ */
+fun Block.burnsInfinitely(): Boolean {
+    return type.burnsInfinitely()
+}
+
 fun Block.supportsFire(): Boolean {
     val canBeReplaced = !type.isCollidable && !liquidBlocks.contains(type)
     if (!canBeReplaced) return false
