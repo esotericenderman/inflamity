@@ -74,6 +74,9 @@ fun Block.fireCanReplace(): Boolean {
     return type.fireCanReplace()
 }
 
+/**
+ * Returns whether fire could ever possibly exist on this block.
+ */
 fun Block.supportsFire(): Boolean {
     if (!fireCanReplace()) return false
 
@@ -85,12 +88,19 @@ fun Block.supportsFire(): Boolean {
     return canBurn || oneNeighbourFlammable
 }
 
+/**
+ * Attempts to set this block on fire, checks whether that should be allowed first.
+ * @see Block.supportsFire
+ */
 fun Block.attemptFireSpread() {
     if (supportsFire()) {
         type = Material.FIRE
     }
 }
 
+/**
+ * Attempts to spread fire throughout the whole of the entity's hitbox.
+ */
 fun Entity.attemptFireSpread() {
     loopBoundingBox(Block::attemptFireSpread)
 }
