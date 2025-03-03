@@ -1,6 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
+import dev.enderman.minecraft.plugins.fire.better.entity.isOnFire
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Mob
 import org.bukkit.entity.Player
@@ -21,8 +22,8 @@ fun EntityDamageEvent.spreadsFire(): Boolean {
     if (this !is EntityDamageByEntityEvent) return false
     if (cause !in contactAttacks) return false
 
-    val entityOnFire = entity.fireTicks > 0
-    val damagerOnFire = damager.fireTicks > 0
+    val entityOnFire = entity.isOnFire()
+    val damagerOnFire = damager.isOnFire()
 
     val oneOnFire = entityOnFire || damagerOnFire
 
