@@ -11,3 +11,13 @@ dataSources.local.xml
 
 # Generated file
 .name
+
+# Workspace
+modules.xml
+modules
+kotlinc.xml
+misc.xml
+vcs.xml
+compiler.xml
+gradle.xml
+*.iml
