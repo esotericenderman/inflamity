@@ -4,7 +4,7 @@ import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import dev.enderman.minecraft.plugins.fire.better.entity.isOnFire
 import dev.enderman.minecraft.plugins.fire.better.fire.attemptFireSpread
 import dev.enderman.minecraft.plugins.fire.better.fire.canBurn
-import org.bukkit.Material
+import dev.enderman.minecraft.plugins.fire.better.fire.fireCanReplace
 import org.bukkit.block.data.type.Candle
 import org.bukkit.entity.Entity
 import org.bukkit.event.EventHandler
@@ -50,10 +50,12 @@ class FireProjectileListener : Listener {
 
         hitBlock.blockData = data
 
-        if (!hitBlock.canBurn()) return
+        val containingBlock = projectile.location.block
+
+        if (!hitBlock.canBurn() && !(containingBlock.canBurn() && containingBlock.fireCanReplace())) return
 
         projectile.attemptFireSpread()
-        projectile.location.block.attemptFireSpread()
+        containingBlock.attemptFireSpread()
         hitBlock.attemptFireSpread()
     }
 }
