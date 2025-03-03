@@ -72,7 +72,7 @@ This plugin aims to fix these discrepancies and give fire the power it deserves.
 
 [changelog]: ./CHANGELOG.md
 [issues]: ./ISSUES.md
-[features]: ./FEATURES.md
+[features]: features/FEATURES.md
 [ideas]: ./TODO.md
 [citation]: ../CITATION.cff
 [conduct]: ./CODE_OF_CONDUCT.md
