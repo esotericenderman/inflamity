@@ -2,8 +2,8 @@ package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
 import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
-import dev.enderman.minecraft.plugins.fire.better.entity.extinguish
-import dev.enderman.minecraft.plugins.fire.better.events.listeners.contactAttacks
+import dev.enderman.minecraft.plugins.fire.better.entity.contact.contactAttacks
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.extinguish
 import org.bukkit.damage.DamageSource
 import org.bukkit.damage.DamageType
 import org.bukkit.entity.Creeper

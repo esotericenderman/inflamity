@@ -1,6 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
-import dev.enderman.minecraft.plugins.fire.better.entity.extinguish
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.extinguish
 import dev.enderman.minecraft.plugins.fire.better.events.suffocation.isSuffocationDamage
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener

@@ -1,7 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
-import dev.enderman.minecraft.plugins.fire.better.entity.isOnFire
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.isOnFire
 import dev.enderman.minecraft.plugins.fire.better.fire.attemptFireSpread
 import dev.enderman.minecraft.plugins.fire.better.fire.canBurn
 import dev.enderman.minecraft.plugins.fire.better.fire.fireCanReplace

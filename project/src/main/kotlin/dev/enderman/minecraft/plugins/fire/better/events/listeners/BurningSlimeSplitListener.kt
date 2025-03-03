@@ -1,7 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
-import dev.enderman.minecraft.plugins.fire.better.entity.isOnFire
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.isOnFire
 import org.bukkit.entity.Slime
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener

@@ -1,6 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.entity.contact
 
-import dev.enderman.minecraft.plugins.fire.better.entity.isOnFire
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.isOnFire
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Mob
 import org.bukkit.event.entity.EntityDamageByEntityEvent
