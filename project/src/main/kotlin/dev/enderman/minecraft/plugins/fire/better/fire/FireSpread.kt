@@ -30,7 +30,21 @@ fun Block.supportsFire(): Boolean {
 }
 
 fun Block.canBurn(): Boolean {
-    return type.isFlammable || type.isFuel || type.isBurnable || infiniteBurnBlocks.contains(type)
+    return type.canBurn()
+}
+
+/**
+ * Returns whether this block should be able to disappear if it is set on fire.
+ */
+fun Material.canBurnAway(): Boolean {
+    return isFlammable || isFuel || isBurnable
+}
+
+/**
+ * Returns whether this material can support fire.
+ */
+fun Material.canBurn(): Boolean {
+    return canBurnAway() || infiniteBurnBlocks.contains(this)
 }
 
 fun Entity.attemptFireSpread() {
