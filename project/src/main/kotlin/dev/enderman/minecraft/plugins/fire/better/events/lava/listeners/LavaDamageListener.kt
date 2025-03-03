@@ -1,4 +1,4 @@
-package dev.enderman.minecraft.plugins.fire.better.events.listeners
+package dev.enderman.minecraft.plugins.fire.better.events.lava.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getFireProtectionLevel
 import dev.enderman.minecraft.plugins.fire.better.enchantments.fire.protection.getMaxFireProtectionLevel
