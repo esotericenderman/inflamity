@@ -21,3 +21,6 @@ vcs.xml
 compiler.xml
 gradle.xml
 *.iml
+
+# Libraries metadata
+libraries/
