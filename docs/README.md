@@ -44,7 +44,9 @@ This plugin aims to fix these discrepancies and give fire the power it deserves.
 
 ## License
 
-[Inflamity][root] &copy; 2025 [Esoteric Enderman][author-website] is licensed under the [AGPL 3.0][license] only.
+&copy; 2025 [Esoteric Enderman][author-website]
+
+[Inflamity][root] is licensed under the [AGPL 3.0][license] only.
 
 ## Topics
 
