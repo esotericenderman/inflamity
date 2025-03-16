@@ -21,6 +21,11 @@ class FireProjectileListener : Listener {
         if (!shooter.isOnFire()) return
         if (fireImmuneEntities.contains(projectile.type)) return
 
+        if (extremeCombustionEntities.contains(projectile.type)) {
+            projectile.remove()
+            return
+        }
+
         projectile.fireTicks = FIRE_DURATION
     }
 
