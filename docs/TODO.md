@@ -38,6 +38,7 @@
 
 - Throwable fireballs.
 - If a player is on fire, "flammable items" in their inventory will burn up.
+- ~~Spying~~ ~~Surveillance~~ ~~Tracking~~ ~~"Information gathering"~~ ~~Statistics gathering~~ "Metrics" with bStats.
 
 ## Future
 
@@ -72,3 +73,7 @@
 - Make it so that you *can* put out fire with your hand if you are holding some items.
 - Make it so that lava burns items in your inventory, and not just flammable ones.
 - Prevent fire from randomly going out.
+
+<!-- Link aliases -->
+
+[b-stats]: https://github.com/Bastian/bStats
