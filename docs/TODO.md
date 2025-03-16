@@ -52,6 +52,7 @@
 - Craftable ghast fireballs.
 - Allow mobs to spread fire to each other by physical contact.
 - Fire and ice/snow interactions.
+- Add interactions between fireworks, tnt, candles, and other flammable things.
 
 #### Changes
 
