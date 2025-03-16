@@ -32,15 +32,6 @@
 
 ## Future
 
-## 0.5.0
-
-### To-Do
-
-#### Additions
-
-- Throwable fireballs.
-- If a player is on fire, "flammable items" in their inventory will burn up.
-
 ### To-Do
 
 #### Additions
@@ -72,3 +63,12 @@
 - Make it so that you *can* put out fire with your hand if you are holding some items.
 - Make it so that lava burns items in your inventory, and not just flammable ones.
 - Prevent fire from randomly going out.
+
+## 0.5.0
+
+### To-Do
+
+#### Additions
+
+- Throwable fireballs.
+- If a player is on fire, "flammable items" in their inventory will burn up.
