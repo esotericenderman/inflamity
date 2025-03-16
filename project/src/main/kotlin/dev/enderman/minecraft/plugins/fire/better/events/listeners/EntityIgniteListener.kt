@@ -1,19 +1,23 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
+import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
+import dev.enderman.minecraft.plugins.fire.better.gameModesWithConsequences
 import org.apache.commons.lang3.BooleanUtils
 import org.bukkit.Material
 import org.bukkit.Sound
+import org.bukkit.entity.Mob
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.inventory.EquipmentSlot
-import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.Damageable
 
 class EntityIgniteListener : Listener {
 
     @EventHandler
     fun onEntityIgnite(event: PlayerInteractAtEntityEvent) {
+        if (event.hand != EquipmentSlot.HAND) return
+
         val player = event.player
         val heldItem = player.inventory.itemInMainHand
         val otherItem = player.inventory.itemInOffHand
@@ -34,20 +38,23 @@ class EntityIgniteListener : Listener {
 
         if (mainHandHolding) player.swingMainHand() else player.swingOffHand()
 
-        if (event.hand == EquipmentSlot.HAND) {
-            val item = if (mainHandHolding) heldItem else otherItem
+        entity.fireTicks = FIRE_DURATION
 
-            val meta = item.itemMeta as Damageable
-            val damage = meta.damage
-            val maxDamage = Material.FLINT_AND_STEEL.maxDurability
+        if (!gameModesWithConsequences.contains(player.gameMode)) return
 
-            if (damage == maxDamage - 1) {
-                entity.world.playSound(entity.location, Sound.ENTITY_ITEM_BREAK, 1.0F, 1.0F)
-            }
+        // Consequences:
+        val item = if (mainHandHolding) heldItem else otherItem
 
-            item.damage(1, player)
+        val meta = item.itemMeta as Damageable
+        val damage = meta.damage
+        val maxDamage = Material.FLINT_AND_STEEL.maxDurability
+
+        if (damage == maxDamage - 1) {
+            entity.world.playSound(entity.location, Sound.ENTITY_ITEM_BREAK, 1.0F, 1.0F)
         }
 
-        entity.fireTicks = 10_000
+        item.damage(1, player)
+
+        if (entity is Mob && gameModesWithConsequences.contains(player.gameMode)) entity.target = player
     }
 }

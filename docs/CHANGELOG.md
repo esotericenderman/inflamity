@@ -16,6 +16,25 @@
 
 ## Log
 
+### 0.3.0
+
+#### Additions
+
+- If a slime splits while burning, the resulting smaller slimes will also be on fire.
+- Made creepers ignite as soon as they are on fire.
+- Projectiles will now carry the fire of their shooter.
+- Lit projectiles will now light blocks that they are shot at.
+- Lit projectiles will now light candles.
+
+#### Changes
+
+- Igniting entities will now anger them.
+- Iron golems are now immune to fire.
+- Some entities, such as snowballs, will instantly be removed when entering fire.
+- Eggs, ender pearls, and splash potions will no longer have visual fire.
+- Snow golems will no longer burn when outside fire.
+- Fire does not spread anywhere, unless it makes sense for it to be there (some sort of flammable block nearby).
+
 ### 0.2.1
 
 #### Fixes
