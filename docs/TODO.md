@@ -51,6 +51,7 @@
 - Add flame bows to the list of fire-settings items.
 - Craftable ghast fireballs.
 - Allow mobs to spread fire to each other by physical contact.
+- Fire and ice/snow interactions.
 
 #### Changes
 
