@@ -1,6 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
+import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import dev.enderman.minecraft.plugins.fire.better.entity.extinguish
 import dev.enderman.minecraft.plugins.fire.better.events.listeners.contactAttacks
 import org.bukkit.damage.DamageSource
@@ -23,7 +24,7 @@ class EntityContactListenerTest : AbstractInflamityPluginTest() {
         world = WorldMock()
 
         player = server.addPlayer()
-        player.fireTicks = 10_000
+        player.fireTicks = FIRE_DURATION
 
         creeper = world.createEntity(world.spawnLocation, Creeper::class.java)
     }
@@ -73,7 +74,7 @@ class EntityContactListenerTest : AbstractInflamityPluginTest() {
         for (damageType in contactAttacks) {
             setUpEnvironment()
             player.extinguish()
-            creeper.fireTicks = 10_000
+            creeper.fireTicks = FIRE_DURATION
 
             val source = DamageSource.builder(DamageType.GENERIC).withDirectEntity(player).withCausingEntity(player).withDamageLocation(creeper.location).build()
 

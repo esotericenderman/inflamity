@@ -33,7 +33,3 @@ identifiers:
     description: The source code of this project.
 
 message: If you need to cite this project, please do it as specified in this file.
-
-version: 
-commit: 
-date-released: 

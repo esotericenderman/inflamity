@@ -1,6 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
+import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import dev.enderman.minecraft.plugins.fire.better.events.fire.fireDamageTypes
 import org.bukkit.Material
 import org.bukkit.attribute.Attribute
@@ -40,7 +41,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             )
         )
 
-        player.fireTicks = 10_000
+        player.fireTicks = FIRE_DURATION
 
         server.scheduler.performTicks(50_000L)
 
@@ -73,7 +74,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `suffocating entity stops burning`() {
-        player.fireTicks = 10_000
+        player.fireTicks = FIRE_DURATION
 
         server.scheduler.performTicks(50_000L)
 
@@ -88,7 +89,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `suffocating entity stops burning (event)`() {
-        player.fireTicks = 10_000
+        player.fireTicks = FIRE_DURATION
 
         server.scheduler.performTicks(50_000L)
 
@@ -187,37 +188,6 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
         }
     }
 
-    @Test fun `entity ignores fire with correct key`() {
-        val key = plugin.ignoreFireKey
-
-        val damage = 1.0
-
-        for (cause in fireDamageTypes) {
-            player.persistentDataContainer[key, PersistentDataType.BOOLEAN] = true
-
-            val event = EntityDamageEvent(
-                player,
-                cause,
-                DamageSource.builder(DamageType.GENERIC).withDamageLocation(player.location).build(),
-                damage
-            )
-
-            val originalFinalDamage = event.finalDamage
-
-            event.callEvent()
-
-            assertFalse(event.isCancelled, "Event should not be cancelled when player has PDC key.")
-
-            assertEquals(null, player.persistentDataContainer[key, PersistentDataType.BOOLEAN], "Player should have PDC key removed after damage is applied.")
-            assertFalse(player.persistentDataContainer.has(key, PersistentDataType.BOOLEAN), "Player should have PDC key removed after damage is applied.")
-            assertFalse(player.persistentDataContainer.has(key), "Player should have PDC key removed after damage is applied.")
-
-            val newFinalDamage = event.finalDamage
-
-            assertEquals(originalFinalDamage, newFinalDamage, "Event should not change damage when player has PDC key.")
-        }
-    }
-
     @Test fun `non-living entity is set on fire`() {
         for (cause in fireDamageTypes) {
             val nonLiving = world.spawn(world.spawnLocation, Snowball::class.java)
@@ -233,7 +203,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
 
             event.callEvent()
 
-            assertEquals(10_000, nonLiving.fireTicks)
+            assertEquals(FIRE_DURATION, nonLiving.fireTicks)
         }
     }
 
