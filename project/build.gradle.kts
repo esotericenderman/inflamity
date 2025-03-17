@@ -30,6 +30,8 @@ scmVersion {
 
 version = scmVersion.version
 
+val packagePath = "${project.group}.${property("package")}"
+
 paperPluginYaml {
     name = property("name.display") as String
     description = project.description
@@ -42,7 +44,7 @@ paperPluginYaml {
 
     apiVersion = property("minecraft.version") as String
 
-    main = "${project.group}.${property("package")}.${name.get()}Plugin"
+    main = "${packagePath}.${name.get()}Plugin"
 }
 
 repositories {
@@ -55,6 +57,8 @@ dependencies {
     paperweight.paperDevBundle("${paperPluginYaml.apiVersion.get()}-R0.1-${VersionComparatorUtil.VersionTokenType.SNAPSHOT.name}")
 
     implementation(libs.utility)
+
+    implementation(libs.bstats)
 
     testRuntimeOnly(libs.junit.platform)
     testImplementation(libs.junit.jupiter.engine)
@@ -85,6 +89,8 @@ tasks {
 
     shadowJar {
         minimize()
+
+        relocate("org.bstats", "${packagePath}.dependencies.bstats")
     }
 
     build {

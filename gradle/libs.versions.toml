@@ -3,6 +3,9 @@
 # Utility
 utility = "1.1.1"
 
+# Metrics
+bstats = "3.0.2"
+
 # Test
 junit-platform = "junit-platform-launcher"
 junit-jupiter-engine = "5.11.1"
@@ -31,6 +34,9 @@ minecraft-plugin-fawe = "2.13.0"
 [libraries]
 # Utility
 utility = { module = "com.github.esotericfoundation:utility.kt", version.ref = "utility" }
+
+# Metrics
+bstats = { module = "org.bstats:bstats-bukkit", version.ref = "bstats" }
 
 # Test
 junit-platform = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" }
