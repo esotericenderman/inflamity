@@ -71,6 +71,7 @@
 - Furnaces should be fueled when interacted with a fire-setting item.
 - If a creeper is on fire when it explodes, the explosion sets fire everywhere.
 - Make magma blocks somehow set fire.
+- Temperature mechanic. (e.g., snow golems will melt when close to fire)
 
 #### Changes
 
