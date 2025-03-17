@@ -1,6 +1,9 @@
 # Credit
 
-- [Minecraft Plugin Template][template] &copy; [Esoteric Enderman][template-author], licensed under the [AGPL 3.0][template-license] only.
+## [Minecraft Plugin Template][template]
+
+<sup>&copy; 2024-2025 [Esoteric Enderman][template-author]</sup>\
+<sup>Licensed under the [AGPL 3.0][template-license] only.</sup>
 
 <!-- Link aliases -->
 
