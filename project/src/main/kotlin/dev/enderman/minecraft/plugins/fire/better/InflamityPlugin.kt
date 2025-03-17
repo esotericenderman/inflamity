@@ -44,6 +44,10 @@ open class InflamityPlugin : JavaPlugin() {
 
         events.forEach { manager.registerEvents(it, this) }
 
-        Metrics(this, METRICS_PLUGIN_ID)
+        try {
+            Metrics(this, METRICS_PLUGIN_ID)
+        } catch (exception: IllegalStateException) {
+            logger.warning("Failed to load metrics, likely due to non-production environment.")
+        }
     }
 }
