@@ -22,6 +22,7 @@
 
 - Prevent fire from spreading by hitting mobs if you are holding a non-flammable item.
 - Made lava a lot stronger.
+- Made skeletons immune to fire. They're made of bones so it doesn't make sense for them to burn. Their bows on the other hand...
 
 ### 0.4.0
 

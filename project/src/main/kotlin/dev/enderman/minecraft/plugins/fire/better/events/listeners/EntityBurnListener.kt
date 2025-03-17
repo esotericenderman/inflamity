@@ -29,7 +29,8 @@ val fireImmuneEntities = listOfNotNull(
     EntityType.IRON_GOLEM,
     EntityType.ENDER_PEARL,
     EntityType.EGG,
-    EntityType.POTION
+    EntityType.POTION,
+    EntityType.SKELETON
 )
 
 fun Entity.isImmuneToFire(): Boolean {
