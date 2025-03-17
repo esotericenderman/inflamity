@@ -56,4 +56,4 @@ shadow = { id = "com.gradleup.shadow", version.ref = "plugin-shadow" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "plugin-dokka" }
 
 # Minecraft plugins
-minecraft-fawe = { id = "FastAsyncWorldEdit", version.ref = "minecraft-plugin-fawe" }
+minecraft-fawe = { id = "IntellectualSites:FastAsyncWorldEdit", version.ref = "minecraft-plugin-fawe" }

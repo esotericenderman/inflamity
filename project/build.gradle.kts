@@ -97,7 +97,7 @@ tasks {
 
     withType<RunServer> {
         downloadPlugins {
-            github("IntellectualSites", libs.plugins.minecraft.fawe.get().pluginId, libs.plugins.minecraft.fawe.get().version.requiredVersion, "${libs.plugins.minecraft.fawe.get().pluginId}-Paper-${libs.plugins.minecraft.fawe.get().version.requiredVersion}.jar")
+            github(libs.plugins.minecraft.fawe.get().pluginId.split(":")[0], libs.plugins.minecraft.fawe.get().pluginId.split(":")[1], libs.plugins.minecraft.fawe.get().version.requiredVersion, "${libs.plugins.minecraft.fawe.get().pluginId.split(":")[1]}-Paper-${libs.plugins.minecraft.fawe.get().version.requiredVersion}.jar")
         }
     }
 
