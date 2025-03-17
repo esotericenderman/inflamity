@@ -113,6 +113,12 @@ tasks {
 
             github(faweAuthor, faweName, faweVersion, "${faweName}-Paper-${faweVersion}.${Jar.DEFAULT_EXTENSION}")
         }
+
+        doLast {
+            exec {
+                commandLine("git", "restore", "./run")
+            }
+        }
     }
 
     withType<AbstractRun> {
