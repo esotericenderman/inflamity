@@ -39,3 +39,7 @@ This file documents all of the features of this project.
 - Projectiles will now carry the fire of their shooter.
 - Lit projectiles will light blocks that they are shot at.
 - Lit projectiles will light candles.
+
+## Passengers
+
+- Fire will spread between entities and their passengers (and vice versa).
