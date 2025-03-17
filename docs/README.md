@@ -39,7 +39,6 @@ This plugin aims to fix these discrepancies and give fire the power it deserves.
 ### Releasing New Versions
 
 - Update the [changelog][changelog].
-- Update [citation][citation].
 - Update [security][security] if needed.
 
 ## License
