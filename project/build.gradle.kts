@@ -97,7 +97,15 @@ tasks {
 
     withType<RunServer> {
         downloadPlugins {
-            github(libs.plugins.minecraft.fawe.get().pluginId.split(":")[0], libs.plugins.minecraft.fawe.get().pluginId.split(":")[1], libs.plugins.minecraft.fawe.get().version.requiredVersion, "${libs.plugins.minecraft.fawe.get().pluginId.split(":")[1]}-Paper-${libs.plugins.minecraft.fawe.get().version.requiredVersion}.jar")
+            // FAWE
+
+            val fawe = libs.plugins.minecraft.fawe.get()
+            val faweInfo = fawe.pluginId.split(":")
+            val faweName = faweInfo[1]
+            val faweAuthor = faweInfo[0]
+            val faweVersion = fawe.version.requiredVersion
+
+            github(faweAuthor, faweName, faweVersion, "${faweName}-Paper-${faweVersion}.jar")
         }
     }
 
