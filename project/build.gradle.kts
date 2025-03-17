@@ -97,7 +97,7 @@ tasks {
 
     withType<RunServer> {
         downloadPlugins {
-            modrinth(libs.plugins.minecraft.fawe.get().pluginId, libs.plugins.minecraft.fawe.get().version.requiredVersion)
+            github("IntellectualSites", libs.plugins.minecraft.fawe.get().pluginId, libs.plugins.minecraft.fawe.get().version.requiredVersion, "${libs.plugins.minecraft.fawe.get().pluginId}-Paper-${libs.plugins.minecraft.fawe.get().version.requiredVersion}.jar")
         }
     }
 

@@ -26,7 +26,7 @@ plugin-shadow = "9.0.0-beta8"
 plugin-dokka = "2.0.0"
 
 # Minecraft plugins
-minecraft-plugin-fawe = "2.12.3"
+minecraft-plugin-fawe = "2.13.0"
 
 [libraries]
 # Utility
@@ -56,4 +56,4 @@ shadow = { id = "com.gradleup.shadow", version.ref = "plugin-shadow" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "plugin-dokka" }
 
 # Minecraft plugins
-minecraft-fawe = { id = "fastasyncworldedit", version.ref = "minecraft-plugin-fawe" }
+minecraft-fawe = { id = "FastAsyncWorldEdit", version.ref = "minecraft-plugin-fawe" }
