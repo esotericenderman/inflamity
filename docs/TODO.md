@@ -53,6 +53,7 @@
 - Allow mobs to spread fire to each other by physical contact.
 - Fire and ice/snow interactions.
 - Add interactions between fireworks, tnt, candles, and other flammable things.
+- Add interaction between flint and iron.
 
 #### Changes
 
@@ -60,6 +61,7 @@
 - Make it so that some items are immune to burning in fire and lava.
 - If an entity hits another entity wearing thorns armour with a fire-setting item, both entities are set on fire.
 - Make fire charges and fireballs "go out" when in rain and especially when in water.
+- Make it so that only the flammable part of an item burns. (i. e., a diamond pickaxe that gets burnt will turn into 3 diamonds)
 
 ### Considered
 
