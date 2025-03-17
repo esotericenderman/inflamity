@@ -44,7 +44,8 @@ This plugin aims to fix these discrepancies and give fire the power it deserves.
 
 ## License
 
-&copy; 2025 [Esoteric Enderman][author-website]
+&copy; 2025 [Esoteric Enderman][author-website]\
+&copy; 2025 [Inflamity contributors][contributors]
 
 [Inflamity][root] is licensed under the [AGPL 3.0][license] only.
 
@@ -63,6 +64,7 @@ This plugin aims to fix these discrepancies and give fire the power it deserves.
 <!-- This project -->
 
 [author-website]: https://enderman.dev
+[contributors]: https://github.com/esotericenderman/inflamity/graphs/contributors
 
 [modrinth]: https://modrinth.com/plugin/inflamity
 
