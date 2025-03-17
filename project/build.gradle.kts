@@ -111,7 +111,7 @@ tasks {
             val faweAuthor = faweInfo[0]
             val faweVersion = fawe.version.requiredVersion
 
-            github(faweAuthor, faweName, faweVersion, "${faweName}-Paper-${faweVersion}.jar")
+            github(faweAuthor, faweName, faweVersion, "${faweName}-Paper-${faweVersion}.${Jar.DEFAULT_EXTENSION}")
         }
     }
 
