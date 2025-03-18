@@ -38,7 +38,6 @@
 
 - Throwable fireballs.
 - If a player is on fire, "flammable items" in their inventory will burn up.
-- ~~Spying~~ ~~Surveillance~~ ~~Tracking~~ ~~"Information gathering"~~ ~~Statistics gathering~~ "Metrics" with [bStats][b-stats].
 
 ## Future
 
