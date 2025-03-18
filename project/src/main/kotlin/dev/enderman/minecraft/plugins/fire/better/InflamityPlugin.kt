@@ -33,12 +33,12 @@ open class InflamityPlugin : JavaPlugin() {
             FireProjectileListener(),
             EntityCombustListener(),
             SuffocationListener(),
-            FirePlaceListener(),
             LavaDamageListener(),
             ThrowableFireballListener(),
             FlammableBlockPlaceListener(),
             FlammableItemDestroyListener(),
 
+            FirePlaceListener(this),
             EntityBurnListener(this)
         )
 
@@ -48,6 +48,7 @@ open class InflamityPlugin : JavaPlugin() {
             Metrics(this, METRICS_PLUGIN_ID)
         } catch (exception: IllegalStateException) {
             logger.warning("Failed to load metrics, likely due to non-production environment.")
+            exception.printStackTrace()
         }
     }
 }
