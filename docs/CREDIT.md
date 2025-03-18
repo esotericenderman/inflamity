@@ -8,7 +8,7 @@
 ## [bStats Metrics][bstats-metrics]
 
 <sup>&copy; 2021 [Bastian Oppermann][bstats-metrics-author]</sup>\
-<sup>Licensed under the [MIT license][bstats-metrics-license]. (available [locally][bstats-metrics-license-local])
+<sup>Licensed under the [MIT license][bstats-metrics-license]. (also available [locally][bstats-metrics-license-local])
 
 <!-- Link aliases -->
 
