@@ -2,6 +2,8 @@ package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
 import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.ignite
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.isOnFire
 import dev.enderman.minecraft.plugins.fire.better.events.fire.fireDamageTypes
 import org.bukkit.Material
 import org.bukkit.attribute.Attribute
@@ -41,11 +43,11 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             )
         )
 
-        player.fireTicks = FIRE_DURATION
+        player.ignite()
 
         server.scheduler.performTicks(50_000L)
 
-        assertTrue(player.fireTicks > 0, "Player that starting burning a long time ago does not stop burning.")
+        assertTrue(player.isOnFire(), "Player that starting burning a long time ago does not stop burning.")
     }
 
     @Test fun `entity that starts burning burns forever (event)`() {
@@ -74,7 +76,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `suffocating entity stops burning`() {
-        player.fireTicks = FIRE_DURATION
+        player.ignite()
 
         server.scheduler.performTicks(50_000L)
 
@@ -89,7 +91,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `suffocating entity stops burning (event)`() {
-        player.fireTicks = FIRE_DURATION
+        player.ignite()
 
         server.scheduler.performTicks(50_000L)
 

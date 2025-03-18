@@ -1,7 +1,7 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
-import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import dev.enderman.minecraft.plugins.fire.better.entity.contact.spreadsFire
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.ignite
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
@@ -13,7 +13,7 @@ class EntityContactListener : Listener {
 
         if (!event.spreadsFire()) return
 
-        entity.fireTicks = FIRE_DURATION
-        damager.fireTicks = FIRE_DURATION
+        entity.ignite()
+        damager.ignite()
     }
 }

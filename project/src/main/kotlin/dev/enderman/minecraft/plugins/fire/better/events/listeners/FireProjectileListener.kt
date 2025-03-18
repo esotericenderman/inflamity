@@ -1,6 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
-import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.ignite
 import dev.enderman.minecraft.plugins.fire.better.entity.fire.isOnFire
 import dev.enderman.minecraft.plugins.fire.better.fire.attemptFireSpread
 import dev.enderman.minecraft.plugins.fire.better.fire.canBurn
@@ -27,7 +27,7 @@ class FireProjectileListener : Listener {
             return
         }
 
-        projectile.fireTicks = FIRE_DURATION
+        projectile.ignite()
     }
 
     @EventHandler
@@ -35,10 +35,7 @@ class FireProjectileListener : Listener {
         val projectile = event.entity
         if (!projectile.isOnFire()) return
 
-        val hitEntity = event.hitEntity
-        if (hitEntity != null) {
-            hitEntity.fireTicks = FIRE_DURATION
-        }
+        event.hitEntity?.ignite()
 
         val hitBlock = event.hitBlock ?: return
 

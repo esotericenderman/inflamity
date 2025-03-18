@@ -1,6 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
-import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.ignite
 import dev.enderman.minecraft.plugins.fire.better.gameModesWithConsequences
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
@@ -19,6 +19,6 @@ class FireExtinguishListener : Listener {
         if (!gameModesWithConsequences.contains(player.gameMode)) return
 
         event.isCancelled = true
-        player.fireTicks = FIRE_DURATION
+        player.ignite()
     }
 }

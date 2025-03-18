@@ -1,6 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
-import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.ignite
 import dev.enderman.minecraft.plugins.fire.better.gameModesWithConsequences
 import org.apache.commons.lang3.BooleanUtils
 import org.bukkit.Material
@@ -48,7 +48,7 @@ class EntityIgniteListener : Listener {
 
         if (mainHandHolding) player.swingMainHand() else player.swingOffHand()
 
-        entity.fireTicks = FIRE_DURATION
+        entity.ignite()
 
         if (!gameModesWithConsequences.contains(player.gameMode)) return
 

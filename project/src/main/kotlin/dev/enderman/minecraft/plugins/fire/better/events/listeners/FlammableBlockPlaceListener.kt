@@ -1,9 +1,9 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
-import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
 import dev.enderman.minecraft.plugins.fire.better.fire.attemptFireSpread
 import dev.enderman.minecraft.plugins.fire.better.gameModesWithConsequences
 import dev.enderman.minecraft.plugins.fire.better.blocks.directions
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.ignite
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -25,7 +25,7 @@ class FlammableBlockPlaceListener : Listener {
 
         if (event.blockReplacedState.type != Material.FIRE && event.blockReplacedState.type != Material.LAVA) return
 
-        player.fireTicks = FIRE_DURATION
+        player.ignite()
 
         directions.forEach {
             val blockInDirection = block.getRelative(it)
