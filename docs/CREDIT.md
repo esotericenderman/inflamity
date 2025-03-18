@@ -7,7 +7,7 @@
 
 ## [bStats Metrics][bstats-metrics]
 
-<sup>&copy; 2021 [Bastian Oppermann][bstats-metrics-author]</sup>\
+<sup>[&copy; 2021][bstats-metrics-copyright] [Bastian Oppermann][bstats-metrics-author]</sup>\
 <sup>Licensed under the [MIT license][bstats-metrics-license] (also available [locally][bstats-metrics-license-local])
 
 <!-- Link aliases -->
@@ -19,6 +19,7 @@
 [template-license]: /LICENSE
 
 [bstats-metrics]: https://github.com/Bastian/bstats-metrics
+[bstats-metrics-copyright]: https://github.com/Bastian/bstats-metrics/blob/67684dd731dd9cbbf24d1170297a29ede7e1436d/LICENSE#L3
 [bstats-metrics-author]: https://github.com/Bastian
 [bstats-metrics-license]: https://github.com/Bastian/bstats-metrics/blob/v3.0.2/LICENSE
 [bstats-metrics-license-local]: ./assets/text/licenses/MIT
