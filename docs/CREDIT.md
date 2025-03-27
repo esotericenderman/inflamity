@@ -18,7 +18,7 @@
 [template-author]: https://enderman.dev
 [template-license]: /LICENSE
 
-[bstats-metrics]: https://github.com/Bastian/bstats-metrics
+[bstats-metrics]: https://github.com/Bastian/bstats-metrics/tree/v3.0.2
 [bstats-metrics-copyright]: https://github.com/Bastian/bstats-metrics/blob/v3.0.2/LICENSE#L3
 [bstats-metrics-author]: https://github.com/Bastian
 [bstats-metrics-license]: https://github.com/Bastian/bstats-metrics/blob/v3.0.2/LICENSE
