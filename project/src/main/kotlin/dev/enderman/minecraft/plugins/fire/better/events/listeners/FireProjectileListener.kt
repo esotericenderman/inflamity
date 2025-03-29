@@ -1,6 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better.events.listeners
 
-import dev.enderman.minecraft.plugins.fire.better.entity.fire.ignite
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.combust
 import dev.enderman.minecraft.plugins.fire.better.entity.fire.isOnFire
 import dev.enderman.minecraft.plugins.fire.better.fire.attemptFireSpread
 import dev.enderman.minecraft.plugins.fire.better.fire.canBurn
@@ -27,7 +27,7 @@ class FireProjectileListener : Listener {
             return
         }
 
-        projectile.ignite()
+        projectile.combust()
     }
 
     @EventHandler
@@ -35,7 +35,7 @@ class FireProjectileListener : Listener {
         val projectile = event.entity
         if (!projectile.isOnFire()) return
 
-        event.hitEntity?.ignite()
+        event.hitEntity?.combust()
 
         val hitBlock = event.hitBlock ?: return
 

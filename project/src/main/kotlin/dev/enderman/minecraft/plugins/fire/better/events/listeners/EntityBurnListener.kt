@@ -5,7 +5,7 @@ import dev.enderman.minecraft.plugins.fire.better.entity.fire.extinguish
 import dev.enderman.minecraft.plugins.fire.better.events.fire.isFireDamage
 import dev.enderman.minecraft.plugins.fire.better.armor.loopDamageableArmor
 import dev.enderman.minecraft.plugins.fire.better.armor.loopDamageableArmorMeta
-import dev.enderman.minecraft.plugins.fire.better.entity.fire.ignite
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.combust
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Creeper
 import org.bukkit.entity.Entity
@@ -57,10 +57,10 @@ class EntityBurnListener(private val plugin: JavaPlugin) : Listener {
             return
         }
 
-        entity.ignite()
+        entity.combust()
 
-        entity.passengers.forEach { it.ignite() }
-        entity.vehicle?.ignite()
+        entity.passengers.forEach { it.combust() }
+        entity.vehicle?.combust()
 
         if (entity !is LivingEntity) return
 

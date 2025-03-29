@@ -2,7 +2,7 @@ package dev.enderman.minecraft.plugins.fire.better.event.listeners
 
 import dev.enderman.minecraft.plugins.fire.better.AbstractInflamityPluginTest
 import dev.enderman.minecraft.plugins.fire.better.FIRE_DURATION
-import dev.enderman.minecraft.plugins.fire.better.entity.fire.ignite
+import dev.enderman.minecraft.plugins.fire.better.entity.fire.combust
 import dev.enderman.minecraft.plugins.fire.better.entity.fire.isOnFire
 import dev.enderman.minecraft.plugins.fire.better.events.fire.fireDamageTypes
 import org.bukkit.Material
@@ -16,10 +16,8 @@ import org.bukkit.entity.Snowball
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.Damageable
-import org.bukkit.persistence.PersistentDataType
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
-import org.junit.jupiter.api.assertDoesNotThrow
 import org.mockbukkit.mockbukkit.world.WorldMock
 import kotlin.math.pow
 import kotlin.random.Random
@@ -43,7 +41,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
             )
         )
 
-        player.ignite()
+        player.combust()
 
         server.scheduler.performTicks(50_000L)
 
@@ -76,7 +74,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `suffocating entity stops burning`() {
-        player.ignite()
+        player.combust()
 
         server.scheduler.performTicks(50_000L)
 
@@ -91,7 +89,7 @@ class EntityBurnListenerTest : AbstractInflamityPluginTest() {
     }
 
     @Test fun `suffocating entity stops burning (event)`() {
-        player.ignite()
+        player.combust()
 
         server.scheduler.performTicks(50_000L)
 
