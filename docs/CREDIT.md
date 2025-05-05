@@ -18,9 +18,9 @@
 [template-author]: https://enderman.dev
 [template-license]: /LICENSE
 
-[bstats-metrics]: https://github.com/Bastian/bstats-metrics/tree/v3.0.2
-[bstats-metrics-copyright]: https://github.com/Bastian/bstats-metrics/blob/v3.0.2/LICENSE#L3
+[bstats-metrics]: https://github.com/Bastian/bstats-metrics/tree/67684dd731dd9cbbf24d1170297a29ede7e1436d
+[bstats-metrics-copyright]: https://github.com/Bastian/bstats-metrics/blob/67684dd731dd9cbbf24d1170297a29ede7e1436d/LICENSE#L3
 [bstats-metrics-author]: https://github.com/Bastian
-[bstats-metrics-copyright-statement]: https://github.com/Bastian/bstats-metrics/tree/v3.0.2?tab=License-1-ov-file
-[bstats-metrics-license]: https://github.com/Bastian/bstats-metrics/blob/v3.0.2/LICENSE
+[bstats-metrics-copyright-statement]: https://github.com/Bastian/bstats-metrics/tree/67684dd731dd9cbbf24d1170297a29ede7e1436d?tab=License-1-ov-file
+[bstats-metrics-license]: https://github.com/Bastian/bstats-metrics/blob/67684dd731dd9cbbf24d1170297a29ede7e1436d/LICENSE
 [bstats-metrics-license-local]: ./assets/text/licenses/MIT
