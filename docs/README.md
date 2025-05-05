@@ -49,7 +49,7 @@ This plugin aims to fix these discrepancies and give fire the power it deserves.
 
 ## Topics
 
-<sup>kotlin plugin minecraft paper fire minecraft-plugin mc survival difficulty mc-dev game-mechanics minecraft-plugins mc-kotlin papermc minecraft-survival minecraft-plugin-development minecraft-fire minecraft-paper minecraft-paper-plugin minecraft-paper-plugins</sup>
+<sup>[kotlin](https://github.com/topics/kotlin), [plugin](https://github.com/topics/plugin), [minecraft](https://github.com/topics/minecraft), [paper](https://github.com/topics/paper), [fire](https://github.com/topics/fire), [minecraft-plugin](https://github.com/topics/minecraft-plugin), [mc](https://github.com/topics/mc), [survival](https://github.com/topics/survival), [difficulty](https://github.com/topics/difficulty), [mc-dev](https://github.com/topics/mc-dev), [game-mechanics](https://github.com/topics/game-mechanics), [minecraft-plugins](https://github.com/topics/minecraft-plugins), [mc-kotlin](https://github.com/topics/mc-kotlin), [papermc](https://github.com/topics/papermc), [minecraft-survival](https://github.com/topics/minecraft-survival), [minecraft-plugin-development](https://github.com/topics/minecraft-plugin-development), [minecraft-fire](https://github.com/topics/minecraft-fire), [minecraft-paper](https://github.com/topics/minecraft-paper), [minecraft-paper-plugin](https://github.com/topics/minecraft-paper-plugin), [minecraft-paper-plugins](https://github.com/topics/minecraft-paper-plugins)</sup>
 
 <!-- Link aliases -->
 
