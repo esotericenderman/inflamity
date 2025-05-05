@@ -1,5 +1,6 @@
 package dev.enderman.minecraft.plugins.fire.better
 
+import dev.enderman.minecraft.plugins.fire.better.events.fireball.listeners.OtherProjectileListener
 import dev.enderman.minecraft.plugins.fire.better.events.fireball.listeners.ThrowableFireballListener
 import dev.enderman.minecraft.plugins.fire.better.events.lava.listeners.LavaDamageListener
 import dev.enderman.minecraft.plugins.fire.better.events.listeners.*
@@ -35,6 +36,7 @@ open class InflamityPlugin : JavaPlugin() {
             SuffocationListener(),
             LavaDamageListener(),
             ThrowableFireballListener(),
+            OtherProjectileListener(),
             FlammableBlockPlaceListener(),
             FlammableItemDestroyListener(),
 
