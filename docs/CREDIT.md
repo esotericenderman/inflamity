@@ -23,4 +23,4 @@
 [bstats-metrics-author]: https://github.com/Bastian
 [bstats-metrics-copyright-statement]: https://github.com/Bastian/bstats-metrics/tree/67684dd731dd9cbbf24d1170297a29ede7e1436d?tab=License-1-ov-file
 [bstats-metrics-license]: https://github.com/Bastian/bstats-metrics/blob/67684dd731dd9cbbf24d1170297a29ede7e1436d/LICENSE
-[bstats-metrics-license-local]: ./assets/text/licenses/MIT
+[bstats-metrics-license-local]: ./assets/text/licenses/LICENSE-MIT
